@@ -1,0 +1,25 @@
+# Dependencies
+.DS_Store
+__pycache__/
+*.pyc
+.s3cfg
+
+# Sensitive data
+samples/
+.env
+credentials*
+
+# Large files
+*.pdf
+*.docx
+*.xlsx
+*.jpg
+*.jpeg
+*.png
+*.JPG
+*.JPEG
+*.PNG
+
+# IDE
+.idea/
+.vscode/
