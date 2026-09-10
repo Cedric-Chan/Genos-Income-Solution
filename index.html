@@ -48,6 +48,99 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 .c-ns{color:#999;font-size:.8em}
 .c-na{color:#ccc;font-size:.8em}
 .c-eta{font-size:.75em;font-weight:400;margin-left:4px;color:inherit}
+
+/* ---- Extraction for Risk modal ---- */
+.m-hdr .efr-entry{padding:0}
+.m-hdr .efr-entry button{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;width:100%;height:100%;padding:9px 6px;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit}
+.m-hdr .efr-entry button:hover{background:#333}
+.m-hdr .efr-entry button:focus-visible{outline:2px solid #66BB6A;outline-offset:-3px}
+.m-hdr .efr-entry svg{opacity:.75;flex-shrink:0}
+
+.efr-scrim{position:fixed;inset:0;background:rgba(20,20,18,.48);opacity:0;pointer-events:none;transition:opacity .22s ease-out;z-index:50}
+.efr-scrim.open{opacity:1;pointer-events:auto}
+.efr-modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:3vh 3vw;pointer-events:none}
+.efr-modal[hidden]{display:none}
+.efr-card{pointer-events:auto;background:#fff;width:min(1180px,100%);max-height:92vh;min-height:min(560px,78vh);display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.28);border-radius:6px;overflow:hidden;opacity:0;transform:translateY(14px) scale(.985);transition:opacity .22s ease-out,transform .26s cubic-bezier(.16,1,.3,1)}
+.efr-modal.open .efr-card{opacity:1;transform:none}
+.efr-head{background:#1a1a1a;color:#fff;padding:18px 26px 16px;flex-shrink:0;display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.efr-head h2{font-size:1.16em;font-weight:700;letter-spacing:-.01em}
+.efr-head .efr-sub{margin-top:4px;font-size:.76em;color:#b8b8b2;font-weight:400;line-height:1.45;max-width:76ch}
+.efr-close{all:unset;box-sizing:border-box;cursor:pointer;flex-shrink:0;position:relative;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1.05em;color:#fff;border-radius:4px}
+.efr-close:hover{background:rgba(255,255,255,.14)}
+.efr-close::after{content:"";position:absolute;inset:-5px}
+.efr-close:focus-visible{outline:2px solid rgba(102,187,106,.7);outline-offset:2px;border-radius:4px}
+.efr-tabs{display:flex;gap:2px;padding:0 26px;background:#1a1a1a;flex-shrink:0;overflow-x:auto}
+.efr-tabs::-webkit-scrollbar{display:none}
+.efr-tabs button{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:10px 16px 12px;font-size:.8em;font-weight:600;color:#9a9a94;border-bottom:2.5px solid transparent;white-space:nowrap;display:flex;align-items:center;gap:7px}
+.efr-tabs button .efr-tno{font-size:.86em;font-weight:700;color:inherit;opacity:.8}
+.efr-tabs button:hover{color:#d8d8d2}
+.efr-tabs button[aria-selected="true"]{color:#fff;border-bottom-color:#66BB6A}
+.efr-tabs button:focus-visible{outline:2px solid #66BB6A;outline-offset:-2px}
+.efr-body{flex:1;min-height:0;overflow-y:auto;background:#f8f8f6}
+.efr-panel{display:none;padding:22px 26px 26px}
+.efr-panel.active{display:block}
+#efr-p1.active{display:flex;flex-direction:column}
+#efr-p1 .efr-pipe{flex:1 1 auto}
+#efr-p1 .efr-facts{flex-shrink:0}
+.efr-panel iframe{display:block}
+#efr-p2.active{display:flex;flex-direction:column;height:100%;padding-bottom:16px}
+#efr-p2 .efr-lede{flex-shrink:0}
+#efr-p2 .efr-frame{flex:1;min-height:380px;margin-top:14px;border:1px solid #ddd;background:#fff;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+#efr-p2 iframe{flex:1;width:100%;border:0}
+.efr-lede{font-size:.86em;color:#333;line-height:1.65;max-width:92ch;margin-bottom:16px}
+.efr-lede b{color:#111}
+
+/* tab 1 pipeline */
+.efr-pipe{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;gap:0;align-items:stretch;margin:4px 0 18px}
+.efr-stage{background:#fff;border:1px solid #e3e3dc;border-radius:5px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.efr-stage-hd{display:flex;align-items:center;gap:8px}
+.efr-stage-hd .efr-tag{font-size:.64em;font-weight:700;letter-spacing:.06em;color:#fff;background:#1976D2;padding:2.5px 7px;border-radius:3px;white-space:nowrap}
+.efr-stage:nth-child(1) .efr-tag{background:#006B3C}
+.efr-stage:nth-child(5) .efr-tag{background:#C0392B}
+.efr-stage-hd h3{font-size:.92em;font-weight:700;color:#111}
+.efr-stage p{font-size:.78em;color:#444;line-height:1.6}
+.efr-stage p b{color:#111}
+.efr-stage .efr-out{margin-top:auto;font-size:.72em;color:#555;background:#f2f2ee;border-radius:3px;padding:6px 9px;line-height:1.5}
+.efr-stage .efr-out b{color:#111;font-weight:600}
+.efr-arrow{display:flex;align-items:center;justify-content:center;color:#b0b0a8}
+.efr-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.efr-facts>div{background:#fff;border:1px solid #e3e3dc;border-radius:5px;padding:11px 14px;display:flex;flex-direction:column;gap:4px}
+.efr-facts b{font-size:.78em;color:#111}
+.efr-facts span{font-size:.72em;color:#666;line-height:1.55}
+
+/* tab 3 regions */
+.efr-regions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.efr-region{background:#fff;border:1px solid #e3e3dc;border-radius:5px;padding:15px 17px;display:flex;flex-direction:column;gap:11px}
+.efr-region header{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.efr-region header .flag{font-size:1.05em}
+.efr-region header b{font-size:.9em;color:#111}
+.efr-region .efr-ver{font-size:.68em;color:#6f6f6a;font-weight:500;margin-left:auto;white-space:nowrap}
+.efr-cov-bar{display:flex;height:14px;border-radius:3px;overflow:hidden;background:#ececea}
+.efr-cov-bar .r{background:#C0392B}.efr-cov-bar .g{background:#0B7A3D}.efr-cov-bar .m{background:#E6A817}
+.efr-cov-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.72em;color:#555;margin-top:6px}
+.efr-cov-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.efr-cov-legend .r{background:#C0392B}.efr-cov-legend .g{background:#0B7A3D}.efr-cov-legend .m{background:#E6A817}
+.efr-cov-legend .efr-dim{color:#6f6f6a}
+.efr-metrics{display:flex;flex-direction:column;border-top:1px solid #f0f0ec}
+.efr-metrics>div{display:flex;gap:14px;padding:7px 0;border-bottom:1px solid #f0f0ec;font-size:.76em}
+.efr-metrics dt{color:#6f6f6a;flex:0 0 148px}
+.efr-metrics dd{color:#222;flex:1;line-height:1.55}
+.efr-metrics dd em{font-style:normal;color:#999;font-size:.92em}
+.efr-pending{background:#fff;border:1px dashed #d8d8d2;border-radius:5px;padding:10px 16px;font-size:.76em;color:#6f6f6a;margin-bottom:12px}
+.efr-note{font-size:.7em;color:#6f6f6a;line-height:1.6}
+
+@media (max-width:860px){
+  .efr-pipe{grid-template-columns:1fr}
+  .efr-arrow{transform:rotate(90deg);padding:4px 0}
+  .efr-facts{grid-template-columns:1fr}
+  .efr-regions{grid-template-columns:1fr}
+  .efr-head .efr-sub{display:none}
+  .efr-modal{padding:0}
+  .efr-card{max-height:100vh;min-height:100vh;border-radius:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .efr-card,.efr-scrim{transition:none}
+}
 </style>
 </head>
 <body>
@@ -86,7 +179,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
   <div class="m-hdr">
     <div>Market · Document Type</div>
     <div>QC for UC</div>
-    <div>Extraction for Risk</div>
+    <div class="efr-entry"><button type="button" id="efrOpen" aria-haspopup="dialog">Extraction for Risk<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></button></div>
   </div>
   <div class="m-body">
 
@@ -157,6 +250,158 @@ document.querySelectorAll(".m-row>div:first-child .lbl").forEach(lbl => {
     cell.querySelector(".lbl-tip")?.remove();
   });
 });
+</script>
+<div class="efr-scrim" id="efrScrim"></div>
+<div class="efr-modal" id="efrModal" hidden>
+  <div class="efr-card" role="dialog" aria-modal="true" aria-labelledby="efrTitle" aria-describedby="efrDesc">
+    <div class="efr-head">
+      <div>
+        <h2 id="efrTitle">Extraction for Risk — 后置决策模型（ReportCheck）</h2>
+        <p class="efr-sub" id="efrDesc">Genos 解析收入文件；ReportCheck 决策模型把一个申请的全部文件解析结果聚合为申请级自动决策：自动拒绝 / 转人审 / 自动通过。目标：每条自动规则首位命中 Precision ≥ 95%，在此前提下提高自动决策 coverage。</p>
+      </div>
+      <button class="efr-close" id="efrClose" aria-label="关闭">✕</button>
+    </div>
+    <div class="efr-tabs" role="tablist" aria-label="决策模型说明">
+      <button role="tab" id="efr-t1" aria-controls="efr-p1" aria-selected="true" tabindex="0"><span class="efr-tno">①</span>与 Genos 解析的衔接</button>
+      <button role="tab" id="efr-t2" aria-controls="efr-p2" aria-selected="false" tabindex="-1"><span class="efr-tno">②</span>评测驱动的迭代数据链路</button>
+      <button role="tab" id="efr-t3" aria-controls="efr-p3" aria-selected="false" tabindex="-1"><span class="efr-tno">③</span>各地区最新指标</button>
+    </div>
+    <div class="efr-body">
+      <section class="efr-panel active" id="efr-p1" role="tabpanel" aria-labelledby="efr-t1" tabindex="0">
+        <p class="efr-lede">Genos 与 ReportCheck 是<b>一先一后、经文件槽位衔接</b>的两个模型产品：解析模型地区无关地输出结构化 JSON；决策模型把同一申请的全部文件结果聚合成一个申请级决策，由 Dify 编排、Risk Policy 执行。</p>
+        <div class="efr-pipe">
+          <div class="efr-stage">
+            <div class="efr-stage-hd"><span class="efr-tag">上游 · 文件级</span><h3>Genos 解析模型</h3></div>
+            <p>每份 payslip / bank statement / tax / BIR 2316 / COE 单独走 <b>QC Model 拦截 → 反作弊 → LLM OCR</b>，产出结构化字段与 QC、篡改、元数据证据。</p>
+            <div class="efr-out">产物：<b>每份文件一个结构化 JSON</b>（resp_raw），落入申请的文件槽位（每地区 6–8 个槽）。</div>
+          </div>
+          <div class="efr-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <div class="efr-stage">
+            <div class="efr-stage-hd"><span class="efr-tag">下游 · 申请级</span><h3>ReportCheck 决策编排</h3></div>
+            <p>Dify 编排：Start 带入申请上下文与全部文件槽 → <b>mid UDF 按文件类型计算规则信号</b>（1 命中 / 0 未命中 / -1 缺参 / -1001 未上传）→ <b>combine 聚合为申请级 *_reject / *_screen flags</b>。</p>
+            <div class="efr-out">产物：<b>一行一个申请（workflow_flow_no）的 0/1 flags</b>。</div>
+          </div>
+          <div class="efr-arrow" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <div class="efr-stage">
+            <div class="efr-stage-hd"><span class="efr-tag">执行 · 按优先级</span><h3>Risk Policy</h3></div>
+            <p>按确认的 priority 取<b>首位命中</b>规则执行：<b>自动拒绝</b>（带 Report01–13 原因码）、<b>转人审</b>（生成 Ops screening 工单）或<b>自动通过</b>。ID 无命中转人审，PH 无命中自动通过。</p>
+            <div class="efr-out">产物：<b>申请级终态</b>；仅人审单进入 Ops 复核。</div>
+          </div>
+        </div>
+        <div class="efr-facts">
+          <div><b>一个申请、多种文件</b><span>同一申请可混合提交多份、多类型文件；文件级信号必须聚合到申请级才产生终态，规则 Precision 也只在申请级计算。</span></div>
+          <div><b>精度优先的门禁</b><span>每条自动规则首位命中 Precision ≥ 95% 才可上线；评测用 Ops / 用户确认的申请级真值（approve / reject），不用规则自身信号自证。</span></div>
+          <div><b>地区独立实现</b><span>ID 与 PH 各自维护规则逻辑、优先级与 Risk Policy，互不共享；文件输入契约由真实线上流量抽样验证。</span></div>
+        </div>
+      </section>
+      <section class="efr-panel" id="efr-p2" role="tabpanel" aria-labelledby="efr-t2" tabindex="0" hidden>
+        <p class="efr-lede">决策模型靠<b>每周一的自动评测循环</b>迭代：只读拉取线上流量与终态 → 本地回放计算逐规则首位 Precision 与线上 coverage → 分层抽样复核源文件 → 可信标签入 Golden → 生成简报；改动经 Owner 批准后，携配置 JSON 与 E2E 用例在 Dify / Risk Policy <b>手动上线</b>，回到线上，闭环。图内可缩放、搜索、切换明暗主题，右上角可播放「迭代闭环」视角。</p>
+        <div class="efr-frame">
+          <iframe id="efrFrame" data-src="assets/reportcheck-loop.html" title="ReportCheck 决策模型 · 评测驱动迭代数据链路（交互架构图）" loading="lazy"></iframe>
+        </div>
+      </section>
+      <section class="efr-panel" id="efr-p3" role="tabpanel" aria-labelledby="efr-t3" tabindex="0" hidden>
+        <p class="efr-lede">线上 coverage 口径：近 7 天（2026-09-03～09-09）spj / kredit 申请的<b>自动拒绝 / 人审 / 自动通过</b>占比；Precision 为申请级首位命中，给出可信标签与 holdout（固定 1/3 抽样）两个口径。数据截至 <b>2026-09-10</b>。</p>
+        <div class="efr-regions">
+          <article class="efr-region">
+            <header><span class="flag">🇮🇩</span><b>ID · Indonesia</b><span class="efr-ver">Dify V20 · 2026-09-10 上线</span></header>
+            <div>
+              <div class="efr-cov-bar" role="img" aria-label="ID 线上 coverage 组成：自动拒绝 48.15%，自动通过 0%，人审 51.85%"><span class="r" style="width:48.15%"></span><span class="g" style="width:0%"></span><span class="m" style="width:51.85%"></span></div>
+              <div class="efr-cov-legend"><span><i class="r"></i>自动拒绝 48.15%</span><span><i class="g"></i>自动通过 0.00%</span><span><i class="m"></i>人审 51.85%</span><span class="efr-dim">1730 单 / 7 天</span></div>
+            </div>
+            <dl class="efr-metrics">
+              <div><dt>自动拒绝池化 Precision</dt><dd>96.38% <em>（可信标签）</em> / 96.62% <em>（holdout）</em></dd></div>
+              <div><dt>规则规模</dt><dd>自动拒绝 7 条 · 人审 4 条，首位命中口径</dd></div>
+              <div><dt>本周关注</dt><dd>Report07（低质量文件拒绝）本周确认为自动拒绝，线上样本极少（1 条），观察中；其余自动规则全部 ≥ 95%。</dd></div>
+            </dl>
+          </article>
+          <article class="efr-region">
+            <header><span class="flag">🇵🇭</span><b>PH · Philippines</b><span class="efr-ver">Dify V9 · 2026-09-10 上线</span></header>
+            <div>
+              <div class="efr-cov-bar" role="img" aria-label="PH 线上 coverage 组成：自动拒绝 48.07%，自动通过 17.93%，人审 33.93%"><span class="r" style="width:48.07%"></span><span class="g" style="width:17.93%"></span><span class="m" style="width:33.93%"></span></div>
+              <div class="efr-cov-legend"><span><i class="r"></i>自动拒绝 48.07%</span><span><i class="g"></i>自动通过 17.93%</span><span><i class="m"></i>人审 33.93%</span><span class="efr-dim">1556 单 / 7 天</span></div>
+            </div>
+            <dl class="efr-metrics">
+              <div><dt>自动拒绝池化 Precision</dt><dd>97.85% <em>（可信标签）</em> / 100.00% <em>（holdout）</em></dd></div>
+              <div><dt>规则规模</dt><dd>自动拒绝 7 条 · 人审 4 条，首位命中口径</dd></div>
+              <div><dt>本周关注</dt><dd>全部自动规则 Precision ≥ 95%，无上线阻碍；观察名单：解析失败转人审中「payslip + kredit」组合 100% 同向（14 条），样本充足后可自动化。</dd></div>
+            </dl>
+          </article>
+        </div>
+        <div class="efr-pending">🇲🇾 MY · 🇹🇭 TH · 🇻🇳 VN — 决策模型尚未启动（解析侧能力见 Capability Matrix）。</div>
+        <p class="efr-note">最近自动运行 2026-09-09：ID 新流量 1834 条、PH 1355 条，均已完成。简报与快照由每周一评测循环自动生成，此处为摘录；报告 codes 仅用于人工复核归因，不参与 Precision 计算。</p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const modal = document.getElementById('efrModal'),
+        scrim = document.getElementById('efrScrim'),
+        openBtn = document.getElementById('efrOpen'),
+        closeBtn = document.getElementById('efrClose'),
+        tabs = Array.from(modal.querySelectorAll('[role="tab"]')),
+        frame = document.getElementById('efrFrame');
+  let lastFocus = null;
+
+  function activate(tab){
+    tabs.forEach(t => {
+      const sel = t === tab;
+      t.setAttribute('aria-selected', sel);
+      t.tabIndex = sel ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls'));
+      panel.classList.toggle('active', sel);
+      panel.hidden = !sel;
+    });
+    if (tab.id === 'efr-t2' && frame && !frame.src) frame.src = frame.dataset.src;
+  }
+
+  function open(){
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    requestAnimationFrame(() => { modal.classList.add('open'); scrim.classList.add('open'); });
+    closeBtn.focus();
+  }
+  function close(){
+    modal.classList.remove('open'); scrim.classList.remove('open');
+    setTimeout(() => { modal.hidden = true; }, 220);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  scrim.addEventListener('click', close);
+  document.addEventListener('keydown', e => {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'Tab') {
+      const f = modal.querySelectorAll('button,[href],[tabindex]:not([tabindex="-1"]),iframe');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      else if (!modal.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+    }
+  });
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => activate(t));
+    t.addEventListener('keydown', e => {
+      const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!dir) return;
+      e.preventDefault();
+      const next = tabs[(i + dir + tabs.length) % tabs.length];
+      next.focus(); activate(next);
+    });
+  });
+
+  // deep link: #efr opens the dialog, #efr-2 / #efr-3 select a tab
+  const deep = location.hash.match(/^#efr(-[23])?$/);
+  if (deep) {
+    open();
+    if (deep[1]) activate(tabs[Number(deep[1].slice(1)) - 1]);
+  }
+})();
 </script>
 </body>
 </html>
