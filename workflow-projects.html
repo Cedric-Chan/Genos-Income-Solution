@@ -41,6 +41,13 @@ a.back{font-size:.72em;font-weight:700}
 .g-row .name .m{font-size:.72em;color:#888}
 .g-row:hover>div{background:#f2f4f0}
 .g-row:hover .bar{filter:brightness(1.06)}
+/* backlog / on-hold row: whole row grayed out */
+.g-row.hold>div{background:#efefeb}
+.g-row.hold .name .t{color:#8a8a84;font-weight:600}
+.g-row.hold .name .m{color:#a8a8a2}
+.g-row.hold:hover>div{background:#eaeae6}
+.g-row.hold .bar{background:#d8d8d2;color:#8a8a84;border:1px solid #cfcfc9}
+.g-row.hold .bar.ghost{background:repeating-linear-gradient(45deg,#f2f2ee,#f2f2ee 5px,#e8e8e3 5px,#e8e8e3 10px);border:1.5px dashed #c6c6c0;color:#9c9c96}
 
 .bar{margin:2px 3px;border-radius:3px;color:#fff;font-size:.68em;font-weight:600;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;padding:0 4px;height:26px;letter-spacing:.02em}
 .bar.s1{background:#fff;border:1.5px dashed #9aa0a6;color:#666}
@@ -147,11 +154,11 @@ a.back{font-size:.72em;font-weight:700}
       <div style="grid-column:5/6"><div class="bar s1">需求沟通 · 设计 v1.0</div></div>
       <div style="grid-column:6/9"><div class="bar ghost">规则+模型实现 → 评测 → 上线（计划）</div></div>
     </div>
-    <div class="g-row" data-p="kyc">
+    <div class="g-row hold" data-p="kyc">
       <div class="name"><span class="t">KYC Identity Check</span><span class="m">SPP · 反欺诈图像核验</span></div>
       <div style="grid-column:2/4"></div>
-      <div style="grid-column:5/6"><div class="bar s1">需求沟通</div></div>
-      <div style="grid-column:6/9"><div class="bar ghost">Aimos service 实现 → 评测 → 接入 Holmes（计划）</div></div>
+      <div style="grid-column:5/6"><div class="bar">合规风险 · 暂缓</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">Backlog · 无特殊情况不再跟进</div></div>
     </div>
     <div class="g-row" data-p="eslip">
       <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
@@ -180,7 +187,7 @@ a.back{font-size:.72em;font-weight:700}
 <script>
 const STAGE_LABEL = {
   s1:"1 需求沟通", s2:"2 样本采集", s3:"3 ops 打标",
-  s4:"4 模型训练与调优", s5:"5 部署联调", s6:"6 线上服务", na:"未启动"
+  s4:"4 模型训练与调优", s5:"5 部署联调", s6:"6 线上服务", na:"Backlog · 暂缓"
 };
 
 const PROJECTS = {
@@ -227,10 +234,10 @@ const PROJECTS = {
     links:[["Linear — AML Maker Review Automation","https://linear.app/genos-solution-aio/project/aml-maker-review-automation-4771b8ddeb7a"],["业务 SOP（Google Doc）","https://docs.google.com/document/d/15dys1myS3CdncRul4LNd1hdhPDINGXJxDE3xD1hyBE8/edit?tab=t.0"]]
   },
   kyc: {
-    title:"SPP KYC Identity Check — 反欺诈图像核验", stage:"s1", market:"SPP（具体市场待确认）",
+    title:"SPP KYC Identity Check — 反欺诈图像核验", stage:"na", market:"SPP（具体市场待确认）",
     pic:"模型 jiaxi · Biz wayne",
     bg:"反欺诈每天约 50k KYC 信息审核，现为 IV 团队传统 ML 模型服务。本 AI Workflow 作为外部 vendor 服务接入风控引擎 Holmes，聚焦传统 ML 不擅长的图像特征：① 文件元信息校验（Python）；② 图像清晰度、头身占比、面部遮挡等异常；③ AI 生成类校验。三项能力放同一个 Aimos service 实现。",
-    facts:[["触发","仅高度嫌疑 KYC 信息调用本链路"],["容量","预计 100–200 单/天，实时调用"],["定位","与 IV 团队现有 ML 服务并存互补"],["待解决","Aimos workflow 接入 Holmes"]],
+    facts:[["当前状态","Backlog · 暂缓（合规风险）"],["处置","无特殊情况不再跟进；如重启需先解决合规口径"],["容量","预计 100–200 单/天，实时调用（原规划）"],["触发","仅高度嫌疑 KYC 信息调用本链路（原规划）"]],
     links:[["Linear — SPP KYC Identity Check","https://linear.app/genos-solution-aio/project/spp-kyc-identity-check-6aa5b9e3cfdf"]]
   },
   eslip: {
