@@ -110,8 +110,8 @@ a.back{font-size:.72em;font-weight:700}
       <div class="name"><span class="t">BR Text Features</span><span class="m">BR · 提额文本特征工程</span></div>
       <div style="grid-column:2/5"><div class="bar s2">样本采集·离线验证</div></div>
       <div style="grid-column:5/6"><div class="bar s4">模型训练</div></div>
-      <div style="grid-column:6/7"><div class="bar s5">部署陪跑</div></div>
-      <div style="grid-column:7/9"><div class="bar s6">Live Policy（11 月预期）</div></div>
+      <div style="grid-column:6/7"><div class="bar ghost">部署陪跑（计划）</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">Live Policy（11 月预期）</div></div>
     </div>
     <div class="g-row" data-p="my2w">
       <div class="name"><span class="t">MY 2W Deepfake</span><span class="m">MY · VOC 反欺诈</span></div>
@@ -142,6 +142,12 @@ a.back{font-size:.72em;font-weight:700}
       <div style="grid-column:2/4"></div>
       <div style="grid-column:5/6"><div class="bar s1">需求沟通</div></div>
       <div style="grid-column:6/9"><div class="bar ghost">Aimos service 实现 → 评测 → 接入 Holmes（计划）</div></div>
+    </div>
+    <div class="g-row" data-p="eslip">
+      <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
+      <div style="grid-column:2/5"><div class="bar s4">样本 · 打标 · 训练调优</div></div>
+      <div style="grid-column:5/7"><div class="bar s5">部署联调 · 待 GPU</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">Feature 上线 · 反欺诈/授信（计划）</div></div>
     </div>
   </div>
   <div id="todayLine"></div>
@@ -216,6 +222,13 @@ const PROJECTS = {
     bg:"反欺诈每天约 50k KYC 信息审核，现为 IV 团队传统 ML 模型服务。本 AI Workflow 作为外部 vendor 服务接入风控引擎 Holmes，聚焦传统 ML 不擅长的图像特征：① 文件元信息校验（Python）；② 图像清晰度、头身占比、面部遮挡等异常；③ AI 生成类校验。三项能力放同一个 Aimos service 实现。",
     facts:[["触发","仅高度嫌疑 KYC 信息调用本链路"],["容量","预计 100–200 单/天，实时调用"],["定位","与 IV 团队现有 ML 服务并存互补"]],
     links:[["Linear — SPP KYC Identity Check","https://linear.app/genos-solution-aio/project/spp-kyc-identity-check-6aa5b9e3cfdf"]]
+  },
+  eslip: {
+    title:"TH Eslip Txn Behavior — 用户交易行为模型", stage:"s5", market:"TH",
+    pic:"模型 yong keat · Biz yang lei · Data huangwei",
+    bg:"TH 用户线下扫码支付自动生成交易截图存于相册（单文件 >900KB）。用户授权后 MMS 读取相册截图（当前 50 张/人，或扩至 500）生成 img_id；UC 记录申请与 img_id_list；Data Pipeline T+1 分批下载入 S3；AIS job 用蒸馏 0.9B 模型解析（preprocess / main / postprocess 入 HDFS）；T+1.5 合并为申请维度交易时间序列并打分入 Hive；featureflow 写 HBase 更新在线 Feature，供激活后在线反欺诈与授信策略使用。",
+    facts:[["当前","阶段 5 部署联调：模型部署与调优中"],["卡点","待协调离线处理 GPU"],["容量","50 → 500 张/人扩容，GPU 需求待评估"]],
+    links:[["Linear — TH Eslip Txn Behavior","https://linear.app/genos-solution-aio/project/th-eslip-txn-behavior-e7d08960cc6a"]]
   }
 };
 
