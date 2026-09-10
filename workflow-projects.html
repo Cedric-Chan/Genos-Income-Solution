@@ -185,21 +185,21 @@ const PROJECTS = {
     title:"BR Text Features — 提额文本特征工程", stage:"s2", market:"BR（BCL）",
     pic:"Risk xiaonian · Biz zhemeng · FRF Rongzhou Bao",
     bg:"把用户申请时自述的贷款理由文本（葡语）经 LLM 转为结构化特征：五维 closed-set 标签（用途 L0/L1/L2、需求性质、还款来源、文本质量、高风险信号）+ 三版 embedding（raw/clean/std）+ 离线画像联合推理评分（一致性/欺诈/还款力 1–4）。特征直接入模新的实时风控模型。",
-    facts:[["在线三层架构","Risk 调 LLM workflow（异步）→ 写 Risk cache → Aimos realtime model 读 cache（E2E ≤100ms）"],["节奏","9 月训练启动 · 10 月陪跑 · 预期 11 月 Live Policy"],["容量","约 3K 文件/天当量（文本推理）"]],
+    facts:[["在线三层架构","Risk 调 LLM workflow（异步）→ 写 Risk cache → Aimos realtime model 读 cache（E2E ≤100ms）"],["节奏","9 月训练启动 · 10 月陪跑 · 预期 11 月 Live Policy"],["容量","约 3K 文件/天当量（文本推理）"],["待解决","Aimos workflow 接入 Holmes"]],
     links:[["Linear — BR Text Feature Engineering","https://linear.app/genos-solution-aio/project/br-text-feature-engineering-d9a8c813786d"],["FRF（Google Doc）","https://docs.google.com/document/d/1tDFH5E5QlOIxDVPAicXPY5ApiZEEgAKlHWjfrKQYc0M/edit?tab=t.0"],["Lark 会议纪要","https://dorhgub1mh.sg.larksuite.com/docx/MI5SdgwBIoa5umxt3wjlGqoggFb"]]
   },
   my2w: {
     title:"MY 2W Deepfake — VOC 鉴别与交付照片", stage:"s2", market:"MY（2W Motorcycle Loan）",
     pic:"模型 Cedric Chen · Risk ariel · Biz libo.zhou（Owner jinglei.fu）",
     bg:"SPayLater Admin - Loan Screening 入口的反欺诈：鉴别 deepfake VOC（车辆所有权证书）与交付照片（借助 IV Team 专业能力），VOC 13 字段全量 OCR + Ops 人工修正，chassis number 内部库查重，每日落表供离线分析。每单欺诈规避约 USD 3,000。",
-    facts:[["技术定位","Aimos 新独立服务（不并入 Genos）"],["验收缺口","deepfake precision/recall 目标、OCR 字段准确率口径待与需求方对齐"],["交付","FRF 期望 2026-09，实际排期待确认"]],
+    facts:[["技术定位","Aimos 新独立服务（不并入 Genos）"],["验收缺口","deepfake precision/recall 目标、OCR 字段准确率口径待与需求方对齐"],["交付","FRF 期望 2026-09，实际排期待确认"],["待解决","收集样本、DS 排期、Aimos workflow 接入 Holmes"]],
     links:[["Linear — MY 2W Deepfake","https://linear.app/genos-solution-aio/project/my-2w-deepfake-e45a0f645050"],["FRF（Google Doc）","https://docs.google.com/document/d/1glNpmKLCsnPXfZrGdvIs6Yz1Vp1x8fZCiTSdLVzEKCs/edit?tab=t.0"]]
   },
   thloan: {
     title:"TH Loan Purpose — Nano 用途验证", stage:"s2", market:"TH（Nano Finance / BCL）",
     pic:"模型 Cedric Chen · UC xiaoyu · Risk zhenghuan",
     bg:"Bank of Thailand 要求 Nano 贷款仅限 occupational purposes。在 BCL activation 嵌入风险验证流：强制用途告知 → user tag 分流（DS occupation algo，覆盖约 70%）→ 需文件者提交 supporting documents（1–6 份）→ Phase1 全量人审；过渡期采样训练，Phase2 模型自动判断文件与用途匹配性（result 1/0/-1，BOOL 门控 high Recall / low FN），人审兜底。",
-    facts:[["容量","约 1.5K 申请/天进文件流程，~3K 文件/天"],["模型契约","file url + 密码(可选) + loan purpose → status_code + result 1/0/-1"],["当前","过渡期模型采样已起步；Phase 1 线上人审并行与线上采样 9 月中开始"]],
+    facts:[["容量","约 1.5K 申请/天进文件流程，~3K 文件/天"],["模型契约","file url + 密码(可选) + loan purpose → status_code + result 1/0/-1"],["当前","过渡期模型采样已起步；Phase 1 线上人审并行与线上采样 9 月中开始"],["待解决","收集样本、DS 排期、在线推理 GPU、Aimos workflow 接入 Holmes"]],
     links:[["Linear — Loan purpose Project (TH/BR)","https://linear.app/genos-solution-aio/project/5c8bd6cb-b87a-472a-8174-c4e7ae7da120"],["Issue GEN-22（Phase2 模型）","https://linear.app/genos-solution-aio/issue/GEN-22"]]
   },
   phspc: {
@@ -213,14 +213,14 @@ const PROJECTS = {
     title:"AML Maker Review — PH SPP 反洗钱人审自动化", stage:"s1", market:"PH（SPP / ShopeePay）",
     pic:"模型 sijia（sijia.huang@monee.com）· Biz sijia",
     bg:"AML 姓名筛查命中（hit）目前由人工 Maker Review 逐条消解。本项目将其自动化：fictitious name 前置直拒（scene/证件不合法且 hit ≥20）；hit 级审核（seamless FP 判定 + name match 判定：去前后缀/重音，first+last 均出现才算匹配；内部名单一律 true hit）；case 级决策按命中名单分流，全部消解后走 gibberish name 与 industry/occupation mismatch 判定。",
-    facts:[["I/O","US→Holmes AML 入参 + seamless result[] → case 级 action/template_id/maker comment + 逐 hit dismiss 与 reasoning"],["当前","阶段 1 需求沟通，设计文档 v1.0（2026-09-02）"],["验收缺口","dismiss 准确率、与人工一致性、FN 上限口径待对齐"]],
+    facts:[["I/O","US→Holmes AML 入参 + seamless result[] → case 级 action/template_id/maker comment + 逐 hit dismiss 与 reasoning"],["当前","阶段 1 需求沟通，设计文档 v1.0（2026-09-02）"],["验收缺口","dismiss 准确率、与人工一致性、FN 上限口径待对齐"],["待解决","Aimos workflow 接入 Holmes"]],
     links:[["Linear — AML Maker Review Automation","https://linear.app/genos-solution-aio/project/aml-maker-review-automation-4771b8ddeb7a"],["业务 SOP（Google Doc）","https://docs.google.com/document/d/15dys1myS3CdncRul4LNd1hdhPDINGXJxDE3xD1hyBE8/edit?tab=t.0"]]
   },
   kyc: {
     title:"SPP KYC Identity Check — 反欺诈图像核验", stage:"s1", market:"SPP（具体市场待确认）",
     pic:"模型 jiaxi · Biz wayne",
     bg:"反欺诈每天约 50k KYC 信息审核，现为 IV 团队传统 ML 模型服务。本 AI Workflow 作为外部 vendor 服务接入风控引擎 Holmes，聚焦传统 ML 不擅长的图像特征：① 文件元信息校验（Python）；② 图像清晰度、头身占比、面部遮挡等异常；③ AI 生成类校验。三项能力放同一个 Aimos service 实现。",
-    facts:[["触发","仅高度嫌疑 KYC 信息调用本链路"],["容量","预计 100–200 单/天，实时调用"],["定位","与 IV 团队现有 ML 服务并存互补"]],
+    facts:[["触发","仅高度嫌疑 KYC 信息调用本链路"],["容量","预计 100–200 单/天，实时调用"],["定位","与 IV 团队现有 ML 服务并存互补"],["待解决","Aimos workflow 接入 Holmes"]],
     links:[["Linear — SPP KYC Identity Check","https://linear.app/genos-solution-aio/project/spp-kyc-identity-check-6aa5b9e3cfdf"]]
   },
   eslip: {
