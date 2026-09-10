@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workflow Projects — Gantt</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:"Inter","Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;background:#f8f8f6;color:#111;font-size:clamp(12px,1.15vw,15px);line-height:1.4;-webkit-font-smoothing:antialiased}
+a{color:#1976D2;text-decoration:none}
+.page{width:100vw;height:100vh;padding:3vh 4vw 2.4vh;display:flex;flex-direction:column;gap:1.6vh;overflow:hidden}
+header{display:flex;justify-content:space-between;align-items:baseline;flex-shrink:0}
+header h1{font-weight:700;font-size:1.5em;letter-spacing:-.015em}
+header .sub{font-size:.78em;color:#888;font-weight:500}
+a.back{font-size:.72em;font-weight:700}
+
+.legend{display:flex;gap:1.2vw;align-items:center;flex-shrink:0;font-size:.75em;color:#555;flex-wrap:wrap}
+.legend .chip{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.legend .dot{width:9px;height:9px;flex-shrink:0;border-radius:2px}
+.legend .dot.s1{background:#fff;border:1.5px dashed #9aa0a6}
+.legend .dot.s2{background:#E6A817}
+.legend .dot.s3{background:#B5541C}
+.legend .dot.s4{background:#1976D2}
+.legend .dot.s5{background:#66BB6A}
+.legend .dot.s6{background:#006B3C}
+.legend .dot.today{width:2px;height:12px;border-radius:0;background:#C0392B}
+
+/* ---- gantt ---- */
+.gantt{flex:1;display:flex;flex-direction:column;min-height:0;position:relative}
+.g-hdr,.g-row{display:grid;grid-template-columns:minmax(190px,1.15fr) repeat(7,minmax(0,1fr));gap:1px;background:#ccc}
+.g-hdr{flex-shrink:0}
+.g-hdr>div{background:#1a1a1a;color:#fff;padding:8px 6px;font-size:.68em;letter-spacing:.08em;text-transform:uppercase;text-align:center;font-weight:700}
+.g-hdr>div:first-child{text-align:left;padding-left:14px}
+.g-hdr>div.now{background:#C0392B}
+.g-body{flex:1;overflow-y:auto;min-height:0}
+
+.g-row{align-items:stretch;cursor:pointer}
+.g-row>div{background:#fff;padding:6px;min-height:40px;display:flex;align-items:center}
+.g-row .name{padding-left:14px;flex-direction:column;align-items:flex-start;justify-content:center;gap:1px}
+.g-row .name .t{font-weight:600;font-size:.86em}
+.g-row .name .m{font-size:.72em;color:#888}
+.g-row:hover>div{background:#f2f4f0}
+.g-row:hover .bar{filter:brightness(1.06)}
+
+.bar{margin:2px 3px;border-radius:3px;color:#fff;font-size:.68em;font-weight:600;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;padding:0 4px;height:26px;letter-spacing:.02em}
+.bar.s1{background:#fff;border:1.5px dashed #9aa0a6;color:#666}
+.bar.s2{background:#E6A817;color:#fff}
+.bar.s3{background:#B5541C}
+.bar.s4{background:#1976D2}
+.bar.s5{background:#66BB6A}
+.bar.s6{background:#006B3C}
+.bar.ghost{background:repeating-linear-gradient(45deg,#f0f0ec,#f0f0ec 5px,#e6e6e0 5px,#e6e6e0 10px);border:1.5px dashed #b8b8b0;color:#888;font-weight:500}
+.bar.now-edge{box-shadow:inset -2px 0 0 rgba(192,57,43,.55)}
+
+/* today line */
+#todayLine{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed rgba(192,57,43,.65);z-index:5;pointer-events:none}
+#todayLine::after{content:"TODAY";position:absolute;top:-2px;left:4px;font-size:.6em;font-weight:700;color:#C0392B;letter-spacing:.08em}
+
+/* footer note */
+.note{flex-shrink:0;font-size:.72em;color:#999}
+
+/* ---- drawer ---- */
+#scrim{position:fixed;inset:0;background:rgba(20,20,18,.32);opacity:0;pointer-events:none;transition:opacity .22s ease-out;z-index:50}
+#scrim.open{opacity:1;pointer-events:auto}
+#drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,92vw);background:#fff;z-index:60;transform:translateX(102%);transition:transform .24s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;box-shadow:-12px 0 34px rgba(0,0,0,.14)}
+#drawer.open{transform:translateX(0)}
+#drawer .d-head{background:#1a1a1a;color:#fff;padding:16px 20px;flex-shrink:0}
+#drawer .d-head .stage{display:inline-block;font-size:.66em;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:3px;margin-bottom:6px}
+#drawer .d-head h2{font-size:1.05em;font-weight:700;letter-spacing:-.01em}
+#drawer .d-body{padding:16px 20px 24px;overflow-y:auto;font-size:.84em}
+#drawer .d-body h3{font-size:.72em;text-transform:uppercase;letter-spacing:.08em;color:#888;margin:14px 0 5px}
+#drawer .d-body p{color:#333;margin-bottom:4px}
+#drawer .d-body ul{list-style:none}
+#drawer .d-body li{padding:3px 0;border-bottom:1px solid #f0f0ec;color:#333}
+#drawer .d-body li b{color:#111}
+#drawer .d-close{position:absolute;top:10px;right:12px;background:none;border:none;color:#fff;font-size:1.2em;cursor:pointer;line-height:1}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header>
+  <h1>AI Workflow Projects</h1>
+  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-10</div>
+</header>
+
+<a class="back" href="index.html">← Genos Capability Matrix</a>
+
+<div class="legend">
+  <div class="chip"><div class="dot s1"></div>1 需求沟通</div>
+  <div class="chip"><div class="dot s2"></div>2 样本采集</div>
+  <div class="chip"><div class="dot s3"></div>3 ops 打标</div>
+  <div class="chip"><div class="dot s4"></div>4 模型训练与调优</div>
+  <div class="chip"><div class="dot s5"></div>5 部署联调</div>
+  <div class="chip"><div class="dot s6"></div>6 线上服务</div>
+  <div class="chip"><div class="dot today"></div>Today · 虚线块为计划</div>
+</div>
+
+<div class="gantt">
+  <div class="g-hdr">
+    <div>Project · Market</div>
+    <div>Jun 2026</div><div>Jul 2026</div><div>Aug 2026</div><div>Sep 2026</div><div>Oct 2026</div><div>Nov 2026</div><div>Dec 2026</div>
+  </div>
+  <div class="g-body" id="gbody">
+    <div class="g-row" data-p="genos">
+      <div class="name"><span class="t">Genos</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span></div>
+      <div style="grid-column:2/9"><div class="bar s6">线上服务 · 5 市场 Live（since 2025）</div></div>
+    </div>
+    <div class="g-row" data-p="brtext">
+      <div class="name"><span class="t">BR Text Features</span><span class="m">BR · 提额文本特征工程</span></div>
+      <div style="grid-column:2/5"><div class="bar s2">样本采集·离线验证</div></div>
+      <div style="grid-column:5/6"><div class="bar s4">模型训练</div></div>
+      <div style="grid-column:6/7"><div class="bar s5">部署陪跑</div></div>
+      <div style="grid-column:7/9"><div class="bar s6">Live Policy（11 月预期）</div></div>
+    </div>
+    <div class="g-row" data-p="my2w">
+      <div class="name"><span class="t">MY 2W Deepfake</span><span class="m">MY · VOC 反欺诈</span></div>
+      <div style="grid-column:2/4"></div>
+      <div style="grid-column:4/5"><div class="bar s1">需求沟通 · FRF</div></div>
+      <div style="grid-column:5/7"><div class="bar s2">样本采集</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">ops 打标 → 训练 → 部署（计划）</div></div>
+    </div>
+    <div class="g-row" data-p="thloan">
+      <div class="name"><span class="t">TH Loan Purpose</span><span class="m">TH · Nano 用途验证</span></div>
+      <div style="grid-column:2/5"><div class="bar s1">需求设计</div></div>
+      <div style="grid-column:5/7"><div class="bar s2">采样 · Phase1 人审并行（9 月中起）</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">Phase2：打标 → 训练 → 部署（计划）</div></div>
+    </div>
+    <div class="g-row" data-p="phspc">
+      <div class="name"><span class="t">PH Same Person Check</span><span class="m">PH · 用户关联同人核验</span></div>
+      <div style="grid-column:2/6"><div class="bar s4">模型训练与调优 · V0 prompt 优化中</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">合规 → 性能 sign-off → go-live（计划）</div></div>
+    </div>
+    <div class="g-row" data-p="aml">
+      <div class="name"><span class="t">AML Maker Review</span><span class="m">PH · SPP 反洗钱人审自动化</span></div>
+      <div style="grid-column:2/4"></div>
+      <div style="grid-column:5/6"><div class="bar s1">需求沟通 · 设计 v1.0</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">规则+模型实现 → 评测 → 上线（计划）</div></div>
+    </div>
+  </div>
+  <div id="todayLine"></div>
+</div>
+
+<div class="note">数据维护：repo <b>Workflow Projects/</b>（索引事实源）· 状态与进展以 Linear 为准 · 点击任意项目行查看背景详情</div>
+
+</div>
+
+<div id="scrim"></div>
+<aside id="drawer">
+  <div class="d-head">
+    <button class="d-close" id="dclose">✕</button>
+    <span class="stage" id="dStage"></span>
+    <h2 id="dTitle"></h2>
+  </div>
+  <div class="d-body" id="dBody"></div>
+</aside>
+
+<script>
+const STAGE_LABEL = {
+  s1:"1 需求沟通", s2:"2 样本采集", s3:"3 ops 打标",
+  s4:"4 模型训练与调优", s5:"5 部署联调", s6:"6 线上服务", na:"未启动"
+};
+
+const PROJECTS = {
+  genos: {
+    title:"Genos — LLM 收入文件解析服务", stage:"s6", market:"ID / MY / PH / TH / VN",
+    pic:"Ruowen Li · Chris Cai · Cedric Chen",
+    bg:"服务 credit limit increase / activation 场景：用户在 App 提交收入文件（Payslip / BS / Tax / EPF / BIR 2316 / COE 等），Genos 以 QC Model（>98% precision）→ Anti-Spoofing（>95%）→ LLM OCR 三段式解析为结构化 JSON，经地区 Decision Model 聚合为申请级 flags，驱动 auto-reject / risk-screen / auto-pass。",
+    facts:[["量化基线","人工 4min11s/$227 每千件 80.89% → Genos 11s/$3.66 88.21%"],["产物","Next Plan/{region}/（ReportCheck 决策模型与 loop evals）"],["接口","Project Design/ API Docs"]],
+    links:[["Linear — GEN team board","https://linear.app/genos-solution-aio/team/GEN/views/issues"],["业务背景 PDF（repo）","https://github.com/Cedric-Chan/Genos-Income-Solution"]]
+  },
+  brtext: {
+    title:"BR Text Features — 提额文本特征工程", stage:"s2", market:"BR（BCL）",
+    pic:"Risk xiaonian · Biz zhemeng · FRF Rongzhou Bao",
+    bg:"把用户申请时自述的贷款理由文本（葡语）经 LLM 转为结构化特征：五维 closed-set 标签（用途 L0/L1/L2、需求性质、还款来源、文本质量、高风险信号）+ 三版 embedding（raw/clean/std）+ 离线画像联合推理评分（一致性/欺诈/还款力 1–4）。特征直接入模新的实时风控模型。",
+    facts:[["在线三层架构","Risk 调 LLM workflow（异步）→ 写 Risk cache → Aimos realtime model 读 cache（E2E ≤100ms）"],["节奏","9 月训练启动 · 10 月陪跑 · 预期 11 月 Live Policy"],["容量","约 3K 文件/天当量（文本推理）"]],
+    links:[["Linear — BR Text Feature Engineering","https://linear.app/genos-solution-aio/project/br-text-feature-engineering-d9a8c813786d"],["FRF（Google Doc）","https://docs.google.com/document/d/1tDFH5E5QlOIxDVPAicXPY5ApiZEEgAKlHWjfrKQYc0M/edit?tab=t.0"],["Lark 会议纪要","https://dorhgub1mh.sg.larksuite.com/docx/MI5SdgwBIoa5umxt3wjlGqoggFb"]]
+  },
+  my2w: {
+    title:"MY 2W Deepfake — VOC 鉴别与交付照片", stage:"s2", market:"MY（2W Motorcycle Loan）",
+    pic:"模型 Cedric Chen · Risk ariel · Biz libo.zhou（Owner jinglei.fu）",
+    bg:"SPayLater Admin - Loan Screening 入口的反欺诈：鉴别 deepfake VOC（车辆所有权证书）与交付照片（借助 IV Team 专业能力），VOC 13 字段全量 OCR + Ops 人工修正，chassis number 内部库查重，每日落表供离线分析。每单欺诈规避约 USD 3,000。",
+    facts:[["技术定位","Aimos 新独立服务（不并入 Genos）"],["验收缺口","deepfake precision/recall 目标、OCR 字段准确率口径待与需求方对齐"],["交付","FRF 期望 2026-09，实际排期待确认"]],
+    links:[["Linear — MY 2W Deepfake","https://linear.app/genos-solution-aio/project/my-2w-deepfake-e45a0f645050"],["FRF（Google Doc）","https://docs.google.com/document/d/1glNpmKLCsnPXfZrGdvIs6Yz1Vp1x8fZCiTSdLVzEKCs/edit?tab=t.0"]]
+  },
+  thloan: {
+    title:"TH Loan Purpose — Nano 用途验证", stage:"s2", market:"TH（Nano Finance / BCL）",
+    pic:"模型 Cedric Chen · UC xiaoyu · Risk zhenghuan",
+    bg:"Bank of Thailand 要求 Nano 贷款仅限 occupational purposes。在 BCL activation 嵌入风险验证流：强制用途告知 → user tag 分流（DS occupation algo，覆盖约 70%）→ 需文件者提交 supporting documents（1–6 份）→ Phase1 全量人审；过渡期采样训练，Phase2 模型自动判断文件与用途匹配性（result 1/0/-1，BOOL 门控 high Recall / low FN），人审兜底。",
+    facts:[["容量","约 1.5K 申请/天进文件流程，~3K 文件/天"],["模型契约","file url + 密码(可选) + loan purpose → status_code + result 1/0/-1"],["当前","过渡期模型采样已起步；Phase 1 线上人审并行与线上采样 9 月中开始"]],
+    links:[["Linear — Loan purpose Project (TH/BR)","https://linear.app/genos-solution-aio/project/5c8bd6cb-b87a-472a-8174-c4e7ae7da120"],["Issue GEN-22（Phase2 模型）","https://linear.app/genos-solution-aio/issue/GEN-22"]]
+  },
+  phspc: {
+    title:"PH Same Person Check — 用户关联 AI 决策", stage:"s4", market:"PH（Bank × SPP/Credit）",
+    pic:"模型 jiaxi · Biz dangyue · 提案/风控 owner Qinghua Cui",
+    bg:"PH 姓名系统复杂、规则匹配不足：对 Bank 与 SPP/Credit 账户关联的 ~10% 流量引入 AI 文本匹配实时决策——~2% 原触发 PIN challenge 改为 AI 判定（消除摩擦），~8% 原固定规则改由 AI 提升边界 case 准确率。文本信息优先于 Selfie 评估。生产链路已迁 Aimos，Holmes 仍为决策入口。",
+    facts:[["I/O","双源 IC No/IC Type/DOB/Gender/Name → Name Match（6 类匹配类别）+ Text Match verdict & confidence"],["业务影响","TAR +17.9%（Bank×Credit）/ +33.9%（Bank×SPP）；FAR 达 QA 标注集门槛才 go-live"],["计划","Phase1 合规审批 → Phase2 性能 sign-off & go-live；Bank Ops T+1 QA"]],
+    links:[["Linear — PH Same Person Check","https://linear.app/genos-solution-aio/project/ph-same-person-check-6a74aee89b82"],["Prompt Design Doc","https://docs.google.com/document/d/1kpIM6R38fosBsCvXWJe18woFWEyxUK-VupsPnGQgX94/edit?tab=t.uzuo2ogm3vo"],["风险评估手册","https://docs.google.com/spreadsheets/d/1XANXIQeUyofjMlodSoFFvhEPHCHp0hwr9XARxZngOmU/edit?gid=577684143#gid=577684143"]]
+  },
+  aml: {
+    title:"AML Maker Review — PH SPP 反洗钱人审自动化", stage:"s1", market:"PH（SPP / ShopeePay）",
+    pic:"模型 sijia（sijia.huang@monee.com）· Biz sijia",
+    bg:"AML 姓名筛查命中（hit）目前由人工 Maker Review 逐条消解。本项目将其自动化：fictitious name 前置直拒（scene/证件不合法且 hit ≥20）；hit 级审核（seamless FP 判定 + name match 判定：去前后缀/重音，first+last 均出现才算匹配；内部名单一律 true hit）；case 级决策按命中名单分流，全部消解后走 gibberish name 与 industry/occupation mismatch 判定。",
+    facts:[["I/O","US→Holmes AML 入参 + seamless result[] → case 级 action/template_id/maker comment + 逐 hit dismiss 与 reasoning"],["当前","阶段 1 需求沟通，设计文档 v1.0（2026-09-02）"],["验收缺口","dismiss 准确率、与人工一致性、FN 上限口径待对齐"]],
+    links:[["Linear — AML Maker Review Automation","https://linear.app/genos-solution-aio/project/aml-maker-review-automation-4771b8ddeb7a"],["业务 SOP（Google Doc）","https://docs.google.com/document/d/15dys1myS3CdncRul4LNd1hdhPDINGXJxDE3xD1hyBE8/edit?tab=t.0"]]
+  }
+};
+
+// row click -> drawer
+document.querySelectorAll(".g-row").forEach(row => {
+  row.addEventListener("click", () => {
+    const p = PROJECTS[row.dataset.p];
+    if (!p) return;
+    document.getElementById("dTitle").textContent = p.title;
+    const st = document.getElementById("dStage");
+    st.textContent = STAGE_LABEL[p.stage];
+    st.style.background = {s1:"#fff",na:"#fff"}[p.stage] || getComputedStyle(document.querySelector(".legend .dot."+p.stage)).backgroundColor;
+    st.style.color = {s1:"#666",na:"#888"}[p.stage] || "#fff";
+    st.style.border = {s1:"1.5px dashed #9aa0a6",na:"1.5px solid #ccc"}[p.stage] || "none";
+    const body = document.getElementById("dBody");
+    body.innerHTML =
+      `<h3>市场 / 业务线</h3><p>${p.market}</p>` +
+      `<h3>PIC</h3><p>${p.pic}</p>` +
+      `<h3>背景说明</h3><p>${p.bg}</p>` +
+      `<h3>要点</h3><ul>${p.facts.map(f=>`<li><b>${f[0]}：</b>${f[1]}</li>`).join("")}</ul>` +
+      `<h3>链接</h3><ul>${p.links.map(l=>`<li><a href="${l[1]}" target="_blank">${l[0]} ↗</a></li>`).join("")}</ul>`;
+    document.getElementById("drawer").classList.add("open");
+    document.getElementById("scrim").classList.add("open");
+  });
+});
+const closeDrawer = () => {
+  document.getElementById("drawer").classList.remove("open");
+  document.getElementById("scrim").classList.remove("open");
+};
+document.getElementById("dclose").addEventListener("click", closeDrawer);
+document.getElementById("scrim").addEventListener("click", closeDrawer);
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(); });
+
+// today line: Sep 10, 2026 positioned within Jun..Dec timeline columns
+(function(){
+  const hdr = document.querySelectorAll(".g-hdr > div");
+  const first = hdr[1].getBoundingClientRect(), last = hdr[7].getBoundingClientRect();
+  const gantt = document.querySelector(".gantt").getBoundingClientRect();
+  const total = last.right - first.left;
+  const days = (new Date("2026-12-31") - new Date("2026-06-01")) / 864e5;
+  const pos = (new Date("2026-09-10") - new Date("2026-06-01")) / 864e5 / days;
+  const line = document.getElementById("todayLine");
+  line.style.left = (first.left - gantt.left + total * pos) + "px";
+  // mark current month header
+  hdr[4].classList.add("now");
+})();
+</script>
+</body>
+</html>
