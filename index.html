@@ -47,6 +47,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 .qc-tip .mm{color:#f2d98d;font-weight:600}
 
 .c-int{font-weight:700;color:#006B3C;font-size:.84em}
+.c-int[data-tip],.c-ready[data-tip],.c-dev[data-tip],.c-labeling[data-tip],.c-ns[data-tip],.c-na[data-tip]{position:relative;cursor:help}
 .vol{font-weight:500;font-size:.88em;opacity:.68;margin-left:9px}
 .c-ready{font-weight:600;color:#66BB6A;font-size:.84em}
 .c-dev{font-weight:600;color:#1976D2;font-size:.84em}
@@ -224,7 +225,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
        <div class="sc-cell" data-tip="ReportCheck Rule Ticket-lvl Screening Decision Rate &middot; L7d Avg<br><span class='rr'>Auto Reject</span> / <span class='gg'>Auto Approve</span> / <span class='mm'>Manual Screen</span>">Tix Screening = <span class="r">6%</span><span class="rd">&nbsp;/&nbsp;</span><span class="g">88%</span><span class="rd">&nbsp;/&nbsp;</span><span class="m">6%</span></div>
     </div>
     <div class="m-row"><div data-full="Bank Statement (Kasikorn Bank, Bangkok Bank, Krungthai Bank, Bank of Ayudhya, SCB, GSB, TTB)"><span class="lbl"> Bank Statement (Kasikorn Bank, Bangkok Bank, Krungthai Bank, Bank of Ayudhya, SCB, GSB, TTB)</span></div><div class="c-int">Integrated<span class="vol">(Daily: 12,453)</span></div><div class="c-int">Integrated<span class="vol">(Daily: 3,779)</span></div></div>
-    <div class="m-row"><div> ESlip</div><div class="c-na">—</div><div class="c-int">Integrated</div></div>
+    <div class="m-row"><div> ESlip</div><div class="c-na">—</div><div class="c-int" data-tip="Migrated to Offline Batch Inference &mdash; no longer calls the Genos service online">Integrated</div></div>
     <div class="m-row"><div> Tax</div><div class="c-na">—</div><div class="c-ready" style="font-weight:700">Ready for Holmes Integration</div></div>
     <div class="m-row"><div> Payslip</div><div class="c-na">—</div><div class="c-labeling" style="font-weight:700">Labeling</div></div>
 
@@ -257,8 +258,9 @@ document.querySelectorAll(".m-row>div:first-child .lbl").forEach(lbl => {
   });
 });
 
-// QC cell (File Intercept) tooltip: metric definition.
-document.querySelectorAll(".qc-cell[data-tip], .sc-cell[data-tip]").forEach(cell => {
+// Tooltips for summary cells (File Intercept / Tix Screening) and any status
+// cell that carries its own data-tip (e.g. TH ESlip migration note).
+document.querySelectorAll(".qc-cell[data-tip], .sc-cell[data-tip], .m-row div[data-tip]").forEach(cell => {
   cell.addEventListener("mouseenter", () => {
     const tip = document.createElement("div");
     tip.className = "qc-tip";
