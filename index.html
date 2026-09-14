@@ -27,7 +27,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 .m-grp{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:1px;background:#ccc}
 .m-grp>div:first-child{background:#e8e8e4;font-weight:800;font-size:.84em;color:#333;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;display:flex;align-items:center;gap:8px}
 .m-grp>div:first-child .flag{font-size:1.2em}
-.m-grp .qc-cell{background:#e8e8e4;display:flex;align-items:center;justify-content:center;gap:4px;font-size:.84em;font-weight:800;color:#111;padding:6px 8px}
+.m-grp .qc-cell{background:#e8e8e4;display:flex;align-items:center;justify-content:center;gap:4px;font-size:.84em;font-weight:800;color:#111;padding:6px 8px;position:relative;cursor:help}
 .m-grp .sc-cell{background:#e8e8e4;display:flex;align-items:center;justify-content:center;gap:5px;font-size:.84em;font-weight:600;color:#333;padding:6px 8px}
 .m-grp .r{color:#C0392B;font-weight:700}
 .m-grp .g{color:#0B7A3D;font-weight:700}
@@ -40,6 +40,8 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 .m-row>div:first-child .lbl{flex:0 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .m-row>div:first-child{position:relative}
 .lbl-tip{position:absolute;left:12px;top:calc(100% - 2px);z-index:20;background:#1a1a1a;color:#f5f5f2;padding:7px 11px;border-radius:4px;font-size:.78em;font-weight:400;white-space:normal;max-width:min(620px,70vw);box-shadow:0 6px 18px rgba(0,0,0,.22);pointer-events:none;letter-spacing:.01em}
+.qc-tip{position:absolute;left:50%;top:calc(100% + 7px);transform:translateX(-50%);z-index:30;background:#1a1a1a;color:#f5f5f2;padding:8px 12px;border-radius:4px;font-size:.78em;font-weight:400;line-height:1.5;white-space:nowrap;text-align:center;box-shadow:0 6px 18px rgba(0,0,0,.22);pointer-events:none;letter-spacing:.01em}
+.qc-tip b{color:#9fe0b4;font-weight:700}
 
 .c-int{font-weight:700;color:#006B3C;font-size:.84em}
 .c-ready{font-weight:600;color:#66BB6A;font-size:.84em}
@@ -185,7 +187,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 
     <div class="m-grp">
       <div><span class="flag">🇮🇩</span> ID — Indonesia</div>
-      <div class="qc-cell">File Intercept = <span style="color:#C0392B;font-weight:700">44%</span></div>
+      <div class="qc-cell" data-tip="Quality Check Model File-lvl Block Rate &middot; L7d Avg<br>File-lvl L7d daily avg submit volume: <b>1,706</b>">File Intercept = <span style="color:#C0392B;font-weight:700">44%</span></div>
        <div class="sc-cell">Tix Screening = <span class="r">51%</span><span class="rd">&nbsp;/&nbsp;</span><span class="g">1%</span><span class="rd">&nbsp;/&nbsp;</span><span class="m">49%</span></div>
     </div>
     <div class="m-row"><div> Payslip</div><div class="c-int">Integrated</div><div class="c-int">Integrated</div></div>
@@ -194,7 +196,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 
     <div class="m-grp">
       <div><span class="flag">🇲🇾</span> MY — Malaysia</div>
-      <div class="qc-cell">File Intercept = <span style="color:#C0392B;font-weight:700">23%</span></div>
+      <div class="qc-cell" data-tip="Quality Check Model File-lvl Block Rate &middot; L7d Avg<br>File-lvl L7d daily avg submit volume: <b>4,449</b>">File Intercept = <span style="color:#C0392B;font-weight:700">23%</span></div>
        <div class="sc-cell">Tix Screening = <span class="r">2%</span><span class="rd">&nbsp;/&nbsp;</span><span class="g">8%</span><span class="rd">&nbsp;/&nbsp;</span><span class="m">89%</span></div>
     </div>
     <div class="m-row"><div> Payslip</div><div class="c-int">Integrated</div><div class="c-int">Integrated</div></div>
@@ -204,7 +206,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 
     <div class="m-grp">
       <div><span class="flag">🇵🇭</span> PH — Philippines</div>
-      <div class="qc-cell">File Intercept = <span style="color:#C0392B;font-weight:700">0%</span></div>
+      <div class="qc-cell" data-tip="Quality Check Model File-lvl Block Rate &middot; L7d Avg<br>File-lvl L7d daily avg submit volume: <b>—</b> (QC not live for UC yet)">File Intercept = <span style="color:#C0392B;font-weight:700">0%</span></div>
        <div class="sc-cell">Tix Screening = <span class="r">53%</span><span class="rd">&nbsp;/&nbsp;</span><span class="g">18%</span><span class="rd">&nbsp;/&nbsp;</span><span class="m">29%</span></div>
     </div>
     <div class="m-row"><div> Payslip</div><div class="c-ready" style="font-weight:700">Ready for UC Integration</div><div class="c-int">Integrated</div></div>
@@ -214,7 +216,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 
     <div class="m-grp">
       <div><span class="flag">🇹🇭</span> TH — Thailand</div>
-      <div class="qc-cell">File Intercept = <span style="color:#C0392B;font-weight:700">7%</span></div>
+      <div class="qc-cell" data-tip="Quality Check Model File-lvl Block Rate &middot; L7d Avg<br>File-lvl L7d daily avg submit volume: <b>12,453</b>">File Intercept = <span style="color:#C0392B;font-weight:700">7%</span></div>
        <div class="sc-cell">Tix Screening = <span class="r">6%</span><span class="rd">&nbsp;/&nbsp;</span><span class="g">88%</span><span class="rd">&nbsp;/&nbsp;</span><span class="m">6%</span></div>
     </div>
     <div class="m-row"><div data-full="Bank Statement (Kasikorn Bank, Bangkok Bank, Krungthai Bank, Bank of Ayudhya, SCB, GSB, TTB)"><span class="lbl"> Bank Statement (Kasikorn Bank, Bangkok Bank, Krungthai Bank, Bank of Ayudhya, SCB, GSB, TTB)</span></div><div class="c-int">Integrated</div><div class="c-int">Integrated</div></div>
@@ -224,7 +226,7 @@ header .sub{font-size:.78em;color:#888;font-weight:500}
 
     <div class="m-grp">
       <div><span class="flag">🇻🇳</span> VN — Vietnam</div>
-      <div class="qc-cell">File Intercept = <span style="color:#C0392B;font-weight:700">0%</span></div>
+      <div class="qc-cell" data-tip="Quality Check Model File-lvl Block Rate &middot; L7d Avg<br>File-lvl L7d daily avg submit volume: <b>—</b> (no QC model deployed)">File Intercept = <span style="color:#C0392B;font-weight:700">0%</span></div>
        <div class="sc-cell">Tix Screening = <span class="r">0%</span><span class="rd">&nbsp;/&nbsp;</span><span class="g">0%</span><span class="rd">&nbsp;/&nbsp;</span><span class="m">100%</span></div>
     </div>
     <div class="m-row"><div data-full="Bank Statement (MBBank、VCB、TechcomBank、VPB、VIB、ACB)"><span class="lbl"> Bank Statement (MBBank、VCB、TechcomBank、VPB、VIB、ACB)</span></div><div class="c-ns">Not Started</div><div class="c-int">Integrated</div></div>
@@ -248,6 +250,19 @@ document.querySelectorAll(".m-row>div:first-child .lbl").forEach(lbl => {
   });
   lbl.addEventListener("mouseleave", () => {
     cell.querySelector(".lbl-tip")?.remove();
+  });
+});
+
+// QC cell (File Intercept) tooltip: metric definition + L7d daily avg submit volume.
+document.querySelectorAll(".qc-cell[data-tip]").forEach(cell => {
+  cell.addEventListener("mouseenter", () => {
+    const tip = document.createElement("div");
+    tip.className = "qc-tip";
+    tip.innerHTML = cell.getAttribute("data-tip");
+    cell.appendChild(tip);
+  });
+  cell.addEventListener("mouseleave", () => {
+    cell.querySelector(".qc-tip")?.remove();
   });
 });
 </script>
