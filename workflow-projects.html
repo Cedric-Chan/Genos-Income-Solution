@@ -97,7 +97,7 @@ a.back{font-size:.72em;font-weight:700}
 
 <header>
   <h1>AI Workflow Projects</h1>
-  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-10</div>
+  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-24</div>
 </header>
 
 <a class="back" href="index.html">← Genos Capability Matrix</a>
@@ -121,6 +121,12 @@ a.back{font-size:.72em;font-weight:700}
     <div class="g-row" data-p="genos">
       <div class="name"><span class="t">Genos Income Project</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span></div>
       <div style="grid-column:2/9"><div class="bar s6">线上服务 · 5 市场 Live（since 2025）</div></div>
+    </div>
+    <div class="g-row" data-p="eslip">
+      <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
+      <div style="grid-column:2/5"><div class="bar s4">样本 · 打标 · 训练调优</div></div>
+      <div style="grid-column:5/7"><div class="bar s5">离线链路跑通 · Hive 表开发中</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">Feature 上线 · 反欺诈/授信（计划）</div></div>
     </div>
     <div class="g-row" data-p="phspc">
       <div class="name"><span class="t">PH Same Person Check</span><span class="m">PH · 用户关联同人核验</span></div>
@@ -151,15 +157,9 @@ a.back{font-size:.72em;font-weight:700}
     <div class="g-row" data-p="thloan">
       <div class="name"><span class="t">TH Loan Purpose</span><span class="m">TH · Nano 用途验证</span></div>
       <div style="grid-column:2/4"><div class="bar s2">过渡期模型采样</div></div>
-      <div style="grid-column:4/6"><div class="bar s3">一期上线(9/14) · 抽样人审10%</div></div>
+      <div style="grid-column:4/6"><div class="bar s3">一期上线 · 抽样人审 · 打标完成</div></div>
       <div style="grid-column:6/7"><div class="bar s4">训练调优+部署+接入风控</div></div>
       <div style="grid-column:7/9"><div class="bar s5">二期上线（11 月初）</div></div>
-    </div>
-    <div class="g-row" data-p="eslip">
-      <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
-      <div style="grid-column:2/5"><div class="bar s4">样本 · 打标 · 训练调优</div></div>
-      <div style="grid-column:5/7"><div class="bar s5">部署联调 · 待 GPU</div></div>
-      <div style="grid-column:7/9"><div class="bar ghost">Feature 上线 · 反欺诈/授信（计划）</div></div>
     </div>
     <div class="g-row" data-p="aml">
       <div class="name"><span class="t">AML Maker Review</span><span class="m">PH · SPP 反洗钱人审自动化</span></div>
@@ -223,7 +223,7 @@ const PROJECTS = {
       ["BPKB Handover & Disbursement","电子签署、网点或快递交接、BPKB 核验、放款"],
       ["Loan Servicing","还款、催收、车辆收回、拍卖与 BPKB 归还"]
     ],
-    facts:[["当前","阶段 2 样本采集（待 align 打标标准后进入阶段 3 ops 打标）"],["时间线","10 月训练调优+部署+接入线上 → 10 月底正式上线服务"],["待解决","Aimos workflow 接入 Holmes"],["经济性","自营模式单位经济约为 BFI 导流模式的 3x（估算）"]],
+    facts:[["当前","样本采集完成，待进入阶段 3 ops 打标"],["时间线","10 月训练调优+部署+接入线上 → 10 月底正式上线服务"],["待解决","Aimos workflow 接入 Holmes"],["经济性","自营模式单位经济约为 BFI 导流模式的 3x（估算）"]],
     links:[["Linear — ID BPKB Carloan","https://linear.app/genos-solution-aio/project/id-bpkb-carloan-edefc642f352"]]
   },
   my2w: {
@@ -234,10 +234,10 @@ const PROJECTS = {
     links:[["Linear — MY 2W Deepfake","https://linear.app/genos-solution-aio/project/my-2w-deepfake-e45a0f645050"],["FRF（Google Doc）","https://docs.google.com/document/d/1glNpmKLCsnPXfZrGdvIs6Yz1Vp1x8fZCiTSdLVzEKCs/edit?tab=t.0"]]
   },
   thloan: {
-    title:"TH Loan Purpose — Nano 用途验证", stage:"s2", market:"TH（Nano Finance / BCL）",
+    title:"TH Loan Purpose — Nano 用途验证", stage:"s4", market:"TH（Nano Finance / BCL）",
     pic:"模型 Cedric Chen · UC xiaoyu · Risk zhenghuan",
     bg:"Bank of Thailand 要求 Nano 贷款仅限 occupational purposes。在 BCL activation 嵌入风险验证流：强制用途告知 → user tag 分流（DS occupation algo，覆盖约 70%）→ 需文件者提交 supporting documents（1–6 份）→ Phase1 全量人审；过渡期采样训练，Phase2 模型自动判断文件与用途匹配性（result 1/0/-1，BOOL 门控 high Recall / low FN），人审兜底。",
-    facts:[["容量","1.8k 工单/天进文件流程，抽样 10% 送人审"],["模型契约","file url + 密码(可选) + loan purpose → status_code + result 1/0/-1"],["时间线","9/14 一期上线 → 抽样人审+源文件采集+ops 打标+审核标准 → 10 月训练调优部署+接入风控 → 11 月初二期上线"],["待解决","收集样本、DS 排期、在线推理 GPU、Aimos workflow 接入 Holmes"]],
+    facts:[["当前","阶段 4 模型训练与调优：ops 打标完成"],["容量","1.8k 工单/天进文件流程，抽样 10% 送人审"],["模型契约","file url + 密码(可选) + loan purpose → status_code + result 1/0/-1"],["时间线","9/14 一期上线 → 抽样人审+源文件采集+ops 打标+审核标准 → 10 月训练调优部署+接入风控 → 11 月初二期上线"],["待解决","DS 排期、在线推理 GPU、Aimos workflow 接入 Holmes"]],
     links:[["Linear — Loan purpose Project (TH/BR)","https://linear.app/genos-solution-aio/project/5c8bd6cb-b87a-472a-8174-c4e7ae7da120"],["Issue GEN-22（Phase2 模型）","https://linear.app/genos-solution-aio/issue/GEN-22"]]
   },
   phspc: {
@@ -264,17 +264,17 @@ const PROJECTS = {
   eslip: {
     title:"TH Eslip Txn Behavior — 用户交易行为模型", stage:"s5", market:"TH",
     pic:"模型 yong keat · Biz yang lei · Data huangwei",
-    bg:"TH 用户线下扫码支付自动生成交易截图存于相册（单文件 >900KB）。用户授权后 MMS 读取相册截图（当前 50 张/人，或扩至 500）生成 img_id；UC 记录申请与 img_id_list；Data Pipeline T+1 分批下载入 S3；AIS job 用蒸馏 0.9B 模型解析（preprocess / main / postprocess 入 HDFS）；T+1.5 合并为申请维度交易时间序列并打分入 Hive；featureflow 写 HBase 更新在线 Feature，供激活后在线反欺诈与授信策略使用。",
+    bg:"TH 用户线下扫码支付自动生成交易截图存于相册（单文件 >900KB）。用户授权后 MMS 读取相册截图（当前 50 张/人，或扩至 500）生成 img_id；UC 记录申请与 img_id_list；Data Pipeline H+3 分批下载入 S3；AIS job 用蒸馏 0.9B 模型解析（preprocess / main / postprocess 入 HDFS）；T+1.5 合并为申请维度交易时间序列并打分入 Hive；featureflow 写 HBase 更新在线 Feature，供激活后在线反欺诈与授信策略使用。",
     flow:[
       ["MMS 采集","用户授权读取相册，取交易截图（50 → 500 张/人）生成 img_id"],
       ["UC 记录","apply_no / apply_time / platform_user_id / img_id_list"],
-      ["Data Pipeline · T+1","分批按 img_id 生成 img_url，下载入 S3（日期/batch_id/apply_no/img_id）"],
+      ["Data Pipeline · H+3","分批按 img_id 生成 img_url，下载入 S3（日期/batch_id/apply_no/img_id）"],
       ["AIS job 解析","preprocess 下载处理 → 0.9B 蒸馏模型解析 → postprocess 写 HDFS"],
       ["合并打分 · T+1.5","HDFS 解析结果合并为申请维度交易时间序列，模型打分入 Hive"],
       ["featureflow · T+1.5","模型分写 HBase，在线 Feature 更新"],
       ["应用","激活后在线反欺诈 / 授信策略"]
     ],
-    facts:[["当前","阶段 5 部署联调：模型部署与调优中"],["卡点","待协调离线处理 GPU"],["容量","50 → 500 张/人扩容，GPU 需求待评估"]],
+    facts:[["当前","离线链路跑通，Hive 表开发中"],["下一步","待 DS 评估和训练模型；待解析模型回溯历史全量"],["容量","50 → 500 张/人扩容"]],
     links:[["Linear — TH Eslip Txn Behavior","https://linear.app/genos-solution-aio/project/th-eslip-txn-behavior-e7d08960cc6a"]]
   }
 };
@@ -317,11 +317,13 @@ document.addEventListener("keydown", e => { if (e.key === "Escape") closeDrawer(
   const gantt = document.querySelector(".gantt").getBoundingClientRect();
   const total = last.right - first.left;
   const days = (new Date("2026-12-31") - new Date("2026-06-01")) / 864e5;
-  const pos = (new Date("2026-09-10") - new Date("2026-06-01")) / 864e5 / days;
+  const now = new Date();
+  const pos = Math.min(1, Math.max(0, (now - new Date("2026-06-01")) / 864e5 / days));
   const line = document.getElementById("todayLine");
   line.style.left = (first.left - gantt.left + total * pos) + "px";
   // mark current month header
-  hdr[4].classList.add("now");
+  const mIdx = (now.getFullYear() - 2026) * 12 + now.getMonth() - 5;  // 0 = Jun 2026
+  if (mIdx >= 0 && mIdx <= 6 && hdr[mIdx + 1]) hdr[mIdx + 1].classList.add("now");
 })();
 </script>
 </body>
