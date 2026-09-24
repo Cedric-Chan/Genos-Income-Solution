@@ -119,7 +119,7 @@ a.back{font-size:.72em;font-weight:700}
   </div>
   <div class="g-body" id="gbody">
     <div class="g-row" data-p="genos">
-      <div class="name"><span class="t">Genos</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span></div>
+      <div class="name"><span class="t">Genos Income Project</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span></div>
       <div style="grid-column:2/9"><div class="bar s6">线上服务 · 5 市场 Live（since 2025）</div></div>
     </div>
     <div class="g-row" data-p="phspc">
@@ -133,6 +133,13 @@ a.back{font-size:.72em;font-weight:700}
       <div style="grid-column:5/6"><div class="bar s4">模型训练</div></div>
       <div style="grid-column:6/7"><div class="bar ghost">部署陪跑（计划）</div></div>
       <div style="grid-column:7/9"><div class="bar ghost">Live Policy（11 月预期）</div></div>
+    </div>
+    <div class="g-row" data-p="bpkb">
+      <div class="name"><span class="t">ID BPKB Carloan</span><span class="m">ID · 车辆证件辅助核验</span></div>
+      <div style="grid-column:2/5"></div>
+      <div style="grid-column:5/6"><div class="bar s2">样本采集</div></div>
+      <div style="grid-column:6/7"><div class="bar s4">训练·部署·接入</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">线上服务（10 月底上线）</div></div>
     </div>
     <div class="g-row" data-p="my2w">
       <div class="name"><span class="t">MY 2W Deepfake</span><span class="m">MY · VOC 反欺诈</span></div>
@@ -192,8 +199,8 @@ const STAGE_LABEL = {
 
 const PROJECTS = {
   genos: {
-    title:"Genos — LLM 收入文件解析服务", stage:"s6", market:"ID / MY / PH / TH / VN",
-    pic:"Ruowen Li · Chris Cai · Cedric Chen",
+    title:"Genos Income Project — LLM 收入文件解析服务", stage:"s6", market:"ID / MY / PH / TH / VN",
+    pic:"Ruowen Li · Shuai Xiao · Mason Xu",
     bg:"服务 credit limit increase / activation 场景：用户在 App 提交收入文件（Payslip / BS / Tax / EPF / BIR 2316 / COE 等），Genos 以 QC Model（>98% precision）→ Anti-Spoofing（>95%）→ LLM OCR 三段式解析为结构化 JSON，经地区 Decision Model 聚合为申请级 flags，驱动 auto-reject / risk-screen / auto-pass。",
     facts:[["量化基线","人工 4min11s/$227 每千件 80.89% → Genos 11s/$3.66 88.21%"],["产物","Next Plan/{region}/（ReportCheck 决策模型与 loop evals）"],["接口","Project Design/ API Docs"]],
     links:[["Linear — GEN team board","https://linear.app/genos-solution-aio/team/GEN/views/issues"],["业务背景 PDF（repo）","https://github.com/Cedric-Chan/Genos-Income-Solution"]]
@@ -204,6 +211,20 @@ const PROJECTS = {
     bg:"把用户申请时自述的贷款理由文本（葡语）经 LLM 转为结构化特征：五维 closed-set 标签（用途 L0/L1/L2、需求性质、还款来源、文本质量、高风险信号）+ 三版 embedding（raw/clean/std）+ 离线画像联合推理评分（一致性/欺诈/还款力 1–4）。特征直接入模新的实时风控模型。",
     facts:[["在线三层架构","Risk 调 LLM workflow（异步）→ 写 Risk cache → Aimos realtime model 读 cache（E2E ≤100ms）"],["节奏","9 月训练启动 · 10 月陪跑 · 预期 11 月 Live Policy"],["容量","约 3K 文件/天当量（文本推理）"],["待解决","Aimos workflow 接入 Holmes"]],
     links:[["Linear — BR Text Feature Engineering","https://linear.app/genos-solution-aio/project/br-text-feature-engineering-d9a8c813786d"],["FRF（Google Doc）","https://docs.google.com/document/d/1tDFH5E5QlOIxDVPAicXPY5ApiZEEgAKlHWjfrKQYc0M/edit?tab=t.0"],["Lark 会议纪要","https://dorhgub1mh.sg.larksuite.com/docx/MI5SdgwBIoa5umxt3wjlGqoggFb"]]
+  },
+  bpkb: {
+    title:"ID BPKB Carloan — 车辆证件辅助核验", stage:"s2", market:"ID（Jabodetabek 二轮车优先）",
+    pic:"模型 Cedric Chen · Risk Michael · Biz shuhui.wang · UC yangli",
+    bg:"Inhouse BPKB Cash Loan：把印尼车辆再融资业务从 BFI 导流模式逐步转为自营放贷，首批面向 Jabodetabek 的选定二轮车车主。产品以用户车辆所有权证（BPKB）作抵押提供现金贷，额度更高、利率更低，用户仍可继续使用车辆。项目打造市场首个端到端数字化再融资旅程——以 App 内提交证件与车辆照片替代传统线下验车，同时保留 BPKB 安全交接与核验；估算单位经济约为现有导流模式的 3 倍，并复用既有授信、运营、抵押品管理与催收能力。分阶段放量与 BFI 兜底流程用于管理自营覆盖扩张过程中的运营与信用风险。",
+    flow:[
+      ["Phased Lead Routing","符合条件的两轮车线索走自营，其余转向 BFI，逐步扩大自营覆盖"],
+      ["Digital Application & AI Screening","App 内提交 BPKB、STNK 与车辆照片，OCR + 文件质量校验"],
+      ["Collateral Verification & Valuation","文件核验 + 车辆照片 + 门户数据 + 授信；未来以视觉模型自动化评估"],
+      ["BPKB Handover & Disbursement","电子签署、网点或快递交接、BPKB 核验、放款"],
+      ["Loan Servicing","还款、催收、车辆收回、拍卖与 BPKB 归还"]
+    ],
+    facts:[["当前","阶段 2 样本采集（待 align 打标标准后进入阶段 3 ops 打标）"],["时间线","10 月训练调优+部署+接入线上 → 10 月底正式上线服务"],["待解决","Aimos workflow 接入 Holmes"],["经济性","自营模式单位经济约为 BFI 导流模式的 3x（估算）"]],
+    links:[["Linear — ID BPKB Carloan","https://linear.app/genos-solution-aio/project/id-bpkb-carloan-edefc642f352"]]
   },
   my2w: {
     title:"MY 2W Deepfake — VOC 鉴别与交付照片", stage:"s2", market:"MY（2W Motorcycle Loan）",
@@ -276,7 +297,7 @@ document.querySelectorAll(".g-row").forEach(row => {
       `<h3>背景说明</h3><p>${p.bg}</p>` +
       (p.flow ? `<h3>流程</h3><div class="flow">${p.flow.map((f,i)=>`<div class="fstep"><div class="fnum">${i+1}</div><div class="fbody"><div class="ft">${f[0]}</div><div class="fd">${f[1]}</div></div></div>`).join("")}</div>` : "") +
       `<h3>要点</h3><ul>${p.facts.map(f=>`<li><b>${f[0]}：</b>${f[1]}</li>`).join("")}</ul>` +
-      `<h3>链接</h3><ul>${p.links.map(l=>`<li><a href="${l[1]}" target="_blank">${l[0]} ↗</a></li>`).join("")}</ul>`;
+      ((p.links && p.links.length) ? `<h3>链接</h3><ul>${p.links.map(l=>`<li><a href="${l[1]}" target="_blank">${l[0]} ↗</a></li>`).join("")}</ul>` : "");
     document.getElementById("drawer").classList.add("open");
     document.getElementById("scrim").classList.add("open");
   });
