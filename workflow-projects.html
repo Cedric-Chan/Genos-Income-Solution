@@ -97,7 +97,7 @@ a.back{font-size:.72em;font-weight:700}
 
 <header>
   <h1>AI Workflow Projects</h1>
-  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-24</div>
+  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-25</div>
 </header>
 
 <a class="back" href="index.html">← Genos Capability Matrix</a>
@@ -124,9 +124,9 @@ a.back{font-size:.72em;font-weight:700}
     </div>
     <div class="g-row" data-p="eslip">
       <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
-      <div style="grid-column:2/5"><div class="bar s4">样本 · 打标 · 训练调优</div></div>
-      <div style="grid-column:5/7"><div class="bar s5">离线链路跑通 · Hive 表开发中</div></div>
-      <div style="grid-column:7/9"><div class="bar ghost">Feature 上线 · 反欺诈/授信（计划）</div></div>
+      <div style="grid-column:2/5"></div>
+      <div style="grid-column:5/6"><div class="bar s5">离线链路跑通</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">数据表开发 · 后续接入（计划）</div></div>
     </div>
     <div class="g-row" data-p="phspc">
       <div class="name"><span class="t">PH Same Person Check</span><span class="m">PH · 用户关联同人核验</span></div>
@@ -135,31 +135,30 @@ a.back{font-size:.72em;font-weight:700}
     </div>
     <div class="g-row" data-p="brtext">
       <div class="name"><span class="t">BR Text Features</span><span class="m">BR · 提额文本特征工程</span></div>
-      <div style="grid-column:2/5"><div class="bar s2">样本采集·离线验证</div></div>
-      <div style="grid-column:5/6"><div class="bar s4">模型训练</div></div>
-      <div style="grid-column:6/7"><div class="bar ghost">部署陪跑（计划）</div></div>
-      <div style="grid-column:7/9"><div class="bar ghost">Live Policy（11 月预期）</div></div>
+      <div style="grid-column:2/5"></div>
+      <div style="grid-column:5/6"><div class="bar s2">样本集构建中</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">训练 · 陪跑 · 接入（待重排）</div></div>
     </div>
     <div class="g-row" data-p="bpkb">
       <div class="name"><span class="t">ID BPKB Carloan</span><span class="m">ID · 车辆证件辅助核验</span></div>
       <div style="grid-column:2/5"></div>
       <div style="grid-column:5/6"><div class="bar s2">样本采集</div></div>
-      <div style="grid-column:6/7"><div class="bar s4">训练·部署·接入</div></div>
-      <div style="grid-column:7/9"><div class="bar ghost">线上服务（10 月底上线）</div></div>
+      <div style="grid-column:6/7"><div class="bar ghost">打标 · 训练 · 联调（计划）</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">上线目标待确认</div></div>
     </div>
     <div class="g-row" data-p="my2w">
       <div class="name"><span class="t">MY 2W Deepfake</span><span class="m">MY · VOC 反欺诈</span></div>
       <div style="grid-column:2/4"></div>
       <div style="grid-column:4/5"><div class="bar s1">需求沟通 · FRF</div></div>
-      <div style="grid-column:5/7"><div class="bar s2">样本采集</div></div>
-      <div style="grid-column:7/9"><div class="bar ghost">ops 打标 → 训练 → 部署（计划）</div></div>
+      <div style="grid-column:5/6"><div class="bar s2">样本采集</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">打标 → 训练 → 部署（待重排）</div></div>
     </div>
     <div class="g-row" data-p="thloan">
       <div class="name"><span class="t">TH Loan Purpose</span><span class="m">TH · Nano 用途验证</span></div>
-      <div style="grid-column:2/4"><div class="bar s2">过渡期模型采样</div></div>
-      <div style="grid-column:4/6"><div class="bar s3">一期上线 · 抽样人审 · 打标完成</div></div>
-      <div style="grid-column:6/7"><div class="bar s4">训练调优+部署+接入风控</div></div>
-      <div style="grid-column:7/9"><div class="bar s5">二期上线（11 月初）</div></div>
+      <div style="grid-column:2/5"></div>
+      <div style="grid-column:5/6"><div class="bar s3">一期上线 · 打标完成</div></div>
+      <div style="grid-column:6/7"><div class="bar ghost">需求确认 · 评测（计划）</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">二期联调 · 上线（待确认）</div></div>
     </div>
     <div class="g-row" data-p="aml">
       <div class="name"><span class="t">AML Maker Review</span><span class="m">PH · SPP 反洗钱人审自动化</span></div>
@@ -177,7 +176,7 @@ a.back{font-size:.72em;font-weight:700}
   <div id="todayLine"></div>
 </div>
 
-<div class="note">数据维护：repo <b>Workflow Projects/</b>（索引事实源）· 状态与进展以 Linear 为准 · 点击任意项目行查看背景详情</div>
+<div class="note">公开摘要 · 截至 2026-09-25 · 内部项目 Markdown 记录为准，计划节点不代表已承诺排期 · 点击项目查看概况</div>
 
 </div>
 
@@ -199,83 +198,49 @@ const STAGE_LABEL = {
 
 const PROJECTS = {
   genos: {
-    title:"Genos Income Project — LLM 收入文件解析服务", stage:"s6", market:"ID / MY / PH / TH / VN",
-    pic:"Ruowen Li · Shuai Xiao · Mason Xu",
-    bg:"服务 credit limit increase / activation 场景：用户在 App 提交收入文件（Payslip / BS / Tax / EPF / BIR 2316 / COE 等），Genos 以 QC Model（>98% precision）→ Anti-Spoofing（>95%）→ LLM OCR 三段式解析为结构化 JSON，经地区 Decision Model 聚合为申请级 flags，驱动 auto-reject / risk-screen / auto-pass。",
-    facts:[["量化基线","人工 4min11s/$227 每千件 80.89% → Genos 11s/$3.66 88.21%"],["产物","Next Plan/{region}/（ReportCheck 决策模型与 loop evals）"],["接口","Project Design/ API Docs"]],
-    links:[["Linear — GEN team board","https://linear.app/genos-solution-aio/team/GEN/views/issues"],["业务背景 PDF（repo）","https://github.com/Cedric-Chan/Genos-Income-Solution"]]
+    title:"Genos Income Project — 收入文件解析", stage:"s6", market:"ID / MY / PH / TH / VN",
+    bg:"收入文件质量校验与结构化解析服务，供后续风控审核使用。",
+    facts:[["当前","五市场提供线上服务"],["下一步","按地区核实质量与自动筛查进展"]]
   },
   brtext: {
     title:"BR Text Features — 提额文本特征工程", stage:"s2", market:"BR（BCL）",
-    pic:"Risk xiaonian · Biz zhemeng · FRF Rongzhou Bao",
-    bg:"把用户申请时自述的贷款理由文本（葡语）经 LLM 转为结构化特征：五维 closed-set 标签（用途 L0/L1/L2、需求性质、还款来源、文本质量、高风险信号）+ 三版 embedding（raw/clean/std）+ 离线画像联合推理评分（一致性/欺诈/还款力 1–4）。特征直接入模新的实时风控模型。",
-    facts:[["在线三层架构","Risk 调 LLM workflow（异步）→ 写 Risk cache → Aimos realtime model 读 cache（E2E ≤100ms）"],["节奏","9 月训练启动 · 10 月陪跑 · 预期 11 月 Live Policy"],["容量","约 3K 文件/天当量（文本推理）"],["待解决","Aimos workflow 接入 Holmes"]],
-    links:[["Linear — BR Text Feature Engineering","https://linear.app/genos-solution-aio/project/br-text-feature-engineering-d9a8c813786d"],["FRF（Google Doc）","https://docs.google.com/document/d/1tDFH5E5QlOIxDVPAicXPY5ApiZEEgAKlHWjfrKQYc0M/edit?tab=t.0"],["Lark 会议纪要","https://dorhgub1mh.sg.larksuite.com/docx/MI5SdgwBIoa5umxt3wjlGqoggFb"]]
+    bg:"将贷款理由文本转为辅助风控的结构化特征。",
+    facts:[["当前","样本集构建中"],["下一步","确认验收标准与训练、接入排期"]]
   },
   bpkb: {
     title:"ID BPKB Carloan — 车辆证件辅助核验", stage:"s2", market:"ID（Jabodetabek 二轮车优先）",
-    pic:"模型 Cedric Chen · Risk Michael · Biz shuhui.wang · UC yangli",
-    bg:"Inhouse BPKB Cash Loan：把印尼车辆再融资业务从 BFI 导流模式逐步转为自营放贷，首批面向 Jabodetabek 的选定二轮车车主。产品以用户车辆所有权证（BPKB）作抵押提供现金贷，额度更高、利率更低，用户仍可继续使用车辆。项目打造市场首个端到端数字化再融资旅程——以 App 内提交证件与车辆照片替代传统线下验车，同时保留 BPKB 安全交接与核验；估算单位经济约为现有导流模式的 3 倍，并复用既有授信、运营、抵押品管理与催收能力。分阶段放量与 BFI 兜底流程用于管理自营覆盖扩张过程中的运营与信用风险。",
-    flow:[
-      ["Phased Lead Routing","符合条件的两轮车线索走自营，其余转向 BFI，逐步扩大自营覆盖"],
-      ["Digital Application & AI Screening","App 内提交 BPKB、STNK 与车辆照片，OCR + 文件质量校验"],
-      ["Collateral Verification & Valuation","文件核验 + 车辆照片 + 门户数据 + 授信；未来以视觉模型自动化评估"],
-      ["BPKB Handover & Disbursement","电子签署、网点或快递交接、BPKB 核验、放款"],
-      ["Loan Servicing","还款、催收、车辆收回、拍卖与 BPKB 归还"]
-    ],
-    facts:[["当前","样本采集完成，待进入阶段 3 ops 打标"],["时间线","10 月训练调优+部署+接入线上 → 10 月底正式上线服务"],["待解决","Aimos workflow 接入 Holmes"],["经济性","自营模式单位经济约为 BFI 导流模式的 3x（估算）"]],
-    links:[["Linear — ID BPKB Carloan","https://linear.app/genos-solution-aio/project/id-bpkb-carloan-edefc642f352"]]
+    bg:"车辆证件与照片质量的辅助核验。",
+    facts:[["当前","样本采集完成"],["下一步","对齐打标标准，训练和联调仍在计划中"]]
   },
   my2w: {
     title:"MY 2W Deepfake — VOC 鉴别与交付照片", stage:"s2", market:"MY（2W Motorcycle Loan）",
-    pic:"模型 Cedric Chen · Risk ariel · Biz libo.zhou（Owner jinglei.fu）",
-    bg:"SPayLater Admin - Loan Screening 入口的反欺诈：鉴别 deepfake VOC（车辆所有权证书）与交付照片（借助 IV Team 专业能力），VOC 13 字段全量 OCR + Ops 人工修正，chassis number 内部库查重，每日落表供离线分析。每单欺诈规避约 USD 3,000。",
-    facts:[["技术定位","Aimos 新独立服务（不并入 Genos）"],["验收缺口","deepfake precision/recall 目标、OCR 字段准确率口径待与需求方对齐"],["交付","FRF 期望 2026-09，实际排期待确认"],["待解决","收集样本、DS 排期、Aimos workflow 接入 Holmes"]],
-    links:[["Linear — MY 2W Deepfake","https://linear.app/genos-solution-aio/project/my-2w-deepfake-e45a0f645050"],["FRF（Google Doc）","https://docs.google.com/document/d/1glNpmKLCsnPXfZrGdvIs6Yz1Vp1x8fZCiTSdLVzEKCs/edit?tab=t.0"]]
+    bg:"面向两轮车贷款的证件与交付照片核验。",
+    facts:[["当前","需求初稿完成，样本采集中"],["下一步","确认评测标准与实际交付排期"]]
   },
   thloan: {
     title:"TH Loan Purpose — Nano 用途验证", stage:"s4", market:"TH（Nano Finance / BCL）",
-    pic:"模型 Cedric Chen · UC xiaoyu · Risk zhenghuan",
-    bg:"Bank of Thailand 要求 Nano 贷款仅限 occupational purposes。在 BCL activation 嵌入风险验证流：强制用途告知 → user tag 分流（DS occupation algo，覆盖约 70%）→ 需文件者提交 supporting documents（1–6 份）→ Phase1 全量人审；过渡期采样训练，Phase2 模型自动判断文件与用途匹配性（result 1/0/-1，BOOL 门控 high Recall / low FN），人审兜底。",
-    facts:[["当前","阶段 4 模型训练与调优：ops 打标完成"],["容量","1.8k 工单/天进文件流程，抽样 10% 送人审"],["模型契约","file url + 密码(可选) + loan purpose → status_code + result 1/0/-1"],["时间线","9/14 一期上线 → 抽样人审+源文件采集+ops 打标+审核标准 → 10 月训练调优部署+接入风控 → 11 月初二期上线"],["待解决","DS 排期、在线推理 GPU、Aimos workflow 接入 Holmes"]],
-    links:[["Linear — Loan purpose Project (TH/BR)","https://linear.app/genos-solution-aio/project/5c8bd6cb-b87a-472a-8174-c4e7ae7da120"],["Issue GEN-22（Phase2 模型）","https://linear.app/genos-solution-aio/issue/GEN-22"]]
+    bg:"面向职业用途核验的一期人工审核流程与后续 AI 辅助审核项目。",
+    facts:[["当前","一期已上线、打标完成；阶段 4 为项目池标记，不代表模型已完成训练"],["下一步","确认审核标准、模型需求与独立评测；二期时间待确认"]]
   },
   phspc: {
     title:"PH Same Person Check — 用户关联 AI 决策", stage:"s4", market:"PH（Bank × SPP/Credit）",
-    pic:"模型 jiaxi · Biz dangyue · 提案/风控 owner Qinghua Cui",
-    bg:"PH 姓名系统复杂、规则匹配不足：对 Bank 与 SPP/Credit 账户关联的 ~10% 流量引入 AI 文本匹配实时决策——~2% 原触发 PIN challenge 改为 AI 判定（消除摩擦），~8% 原固定规则改由 AI 提升边界 case 准确率。文本信息优先于 Selfie 评估。生产链路已迁 Aimos，Holmes 仍为决策入口。",
-    facts:[["I/O","双源 IC No/IC Type/DOB/Gender/Name → Name Match（6 类匹配类别）+ Text Match verdict & confidence"],["业务影响","TAR +17.9%（Bank×Credit）/ +33.9%（Bank×SPP）；FAR 达 QA 标注集门槛才 go-live"],["计划","Phase1 合规审批 → Phase2 性能 sign-off & go-live；Bank Ops T+1 QA"]],
-    links:[["Linear — PH Same Person Check","https://linear.app/genos-solution-aio/project/ph-same-person-check-6a74aee89b82"],["Prompt Design Doc","https://docs.google.com/document/d/1kpIM6R38fosBsCvXWJe18woFWEyxUK-VupsPnGQgX94/edit?tab=t.uzuo2ogm3vo"],["风险评估手册","https://docs.google.com/spreadsheets/d/1XANXIQeUyofjMlodSoFFvhEPHCHp0hwr9XARxZngOmU/edit?gid=577684143#gid=577684143"]]
+    bg:"对账户关联关系进行同人核验的 AI 决策项目。",
+    facts:[["当前","模型方案优化中"],["下一步","核实合规审批与性能验收后再决定上线"]]
   },
   aml: {
     title:"AML Maker Review — PH SPP 反洗钱人审自动化", stage:"s1", market:"PH（SPP / ShopeePay）",
-    pic:"模型 sijia（sijia.huang@monee.com）· Biz sijia",
-    bg:"AML 姓名筛查命中（hit）目前由人工 Maker Review 逐条消解。本项目将其自动化：fictitious name 前置直拒（scene/证件不合法且 hit ≥20）；hit 级审核（seamless FP 判定 + name match 判定：去前后缀/重音，first+last 均出现才算匹配；内部名单一律 true hit）；case 级决策按命中名单分流，全部消解后走 gibberish name 与 industry/occupation mismatch 判定。",
-    facts:[["I/O","US→Holmes AML 入参 + seamless result[] → case 级 action/template_id/maker comment + 逐 hit dismiss 与 reasoning"],["当前","阶段 1 需求沟通，设计文档 v1.0（2026-09-02）"],["验收缺口","dismiss 准确率、与人工一致性、FN 上限口径待对齐"],["待解决","Aimos workflow 接入 Holmes"]],
-    links:[["Linear — AML Maker Review Automation","https://linear.app/genos-solution-aio/project/aml-maker-review-automation-4771b8ddeb7a"],["业务 SOP（Google Doc）","https://docs.google.com/document/d/15dys1myS3CdncRul4LNd1hdhPDINGXJxDE3xD1hyBE8/edit?tab=t.0"]]
+    bg:"探索姓名筛查人审流程的辅助自动化。",
+    facts:[["当前","需求与设计口径整理中"],["下一步","确认评测与合规验收边界"]]
   },
   kyc: {
     title:"SPP KYC Identity Check — 反欺诈图像核验", stage:"na", market:"SPP（具体市场待确认）",
-    pic:"模型 jiaxi · Biz wayne",
-    bg:"反欺诈每天约 50k KYC 信息审核，现为 IV 团队传统 ML 模型服务。本 AI Workflow 作为外部 vendor 服务接入风控引擎 Holmes，聚焦传统 ML 不擅长的图像特征：① 文件元信息校验（Python）；② 图像清晰度、头身占比、面部遮挡等异常；③ AI 生成类校验。三项能力放同一个 Aimos service 实现。",
-    facts:[["当前状态","Backlog · 暂缓（合规风险）"],["处置","无特殊情况不再跟进；如重启需先解决合规口径"],["容量","预计 100–200 单/天，实时调用（原规划）"],["触发","仅高度嫌疑 KYC 信息调用本链路（原规划）"]],
-    links:[["Linear — SPP KYC Identity Check","https://linear.app/genos-solution-aio/project/spp-kyc-identity-check-6aa5b9e3cfdf"]]
+    bg:"图像核验辅助方案，因合规风险暂缓。",
+    facts:[["当前","Backlog · 暂缓"],["下一步","如获准重启，先确认合规口径"]]
   },
   eslip: {
     title:"TH Eslip Txn Behavior — 用户交易行为模型", stage:"s5", market:"TH",
-    pic:"模型 yong keat · Biz yang lei · Data huangwei",
-    bg:"TH 用户线下扫码支付自动生成交易截图存于相册（单文件 >900KB）。用户授权后 MMS 读取相册截图（当前 50 张/人，或扩至 500）生成 img_id；UC 记录申请与 img_id_list；Data Pipeline H+3 分批下载入 S3；AIS job 用蒸馏 0.9B 模型解析（preprocess / main / postprocess 入 HDFS）；T+1.5 合并为申请维度交易时间序列并打分入 Hive；featureflow 写 HBase 更新在线 Feature，供激活后在线反欺诈与授信策略使用。",
-    flow:[
-      ["MMS 采集","用户授权读取相册，取交易截图（50 → 500 张/人）生成 img_id"],
-      ["UC 记录","apply_no / apply_time / platform_user_id / img_id_list"],
-      ["Data Pipeline · H+3","分批按 img_id 生成 img_url，下载入 S3（日期/batch_id/apply_no/img_id）"],
-      ["AIS job 解析","preprocess 下载处理 → 0.9B 蒸馏模型解析 → postprocess 写 HDFS"],
-      ["合并打分 · T+1.5","HDFS 解析结果合并为申请维度交易时间序列，模型打分入 Hive"],
-      ["featureflow · T+1.5","模型分写 HBase，在线 Feature 更新"],
-      ["应用","激活后在线反欺诈 / 授信策略"]
-    ],
-    facts:[["当前","离线链路跑通，Hive 表开发中"],["下一步","待 DS 评估和训练模型；待解析模型回溯历史全量"],["容量","50 → 500 张/人扩容"]],
-    links:[["Linear — TH Eslip Txn Behavior","https://linear.app/genos-solution-aio/project/th-eslip-txn-behavior-e7d08960cc6a"]]
+    bg:"通过已授权交易凭据构建行为特征，用于后续风险分析。",
+    facts:[["当前","离线链路跑通，数据表开发中"],["下一步","评估训练与历史数据回溯，再核实后续接入"]]
   }
 };
 
@@ -293,11 +258,8 @@ document.querySelectorAll(".g-row").forEach(row => {
     const body = document.getElementById("dBody");
     body.innerHTML =
       `<h3>市场 / 业务线</h3><p>${p.market}</p>` +
-      `<h3>PIC</h3><p>${p.pic}</p>` +
       `<h3>背景说明</h3><p>${p.bg}</p>` +
-      (p.flow ? `<h3>流程</h3><div class="flow">${p.flow.map((f,i)=>`<div class="fstep"><div class="fnum">${i+1}</div><div class="fbody"><div class="ft">${f[0]}</div><div class="fd">${f[1]}</div></div></div>`).join("")}</div>` : "") +
-      `<h3>要点</h3><ul>${p.facts.map(f=>`<li><b>${f[0]}：</b>${f[1]}</li>`).join("")}</ul>` +
-      ((p.links && p.links.length) ? `<h3>链接</h3><ul>${p.links.map(l=>`<li><a href="${l[1]}" target="_blank">${l[0]} ↗</a></li>`).join("")}</ul>` : "");
+      `<h3>要点</h3><ul>${p.facts.map(f=>`<li><b>${f[0]}：</b>${f[1]}</li>`).join("")}</ul>`;
     document.getElementById("drawer").classList.add("open");
     document.getElementById("scrim").classList.add("open");
   });
