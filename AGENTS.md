@@ -11,8 +11,8 @@ The private `genos-workspace` repository maintains the underlying project Markdo
 
 1. Check the local Git status and fetch `origin`. Preserve uncommitted work; use `pull --ff-only` only when a clean branch can be fast-forwarded.
 2. Confirm progress and plans against the private project Markdown and any live data source. Do not publish historical tracker references.
-3. Manually publish only approved, non-sensitive summaries. Exclude internal URLs, SQL, credentials, PII, unapproved performance numbers, and draft model contracts. Mark future or unverified milestones as planned (`ghost` bars).
-   For each project update, include a PRD summary and an approved public PRD link; confirm a publishable URL when only a private document is available.
+3. Manually publish only approved, non-sensitive summaries. Exclude internal URLs other than Confluence PRD links, SQL, credentials, PII, unapproved performance numbers, and draft model contracts. Confluence manages access to its PRDs. Mark future or unverified milestones as planned (`ghost` bars).
+   For each project update, include a PRD summary and PRD link without copying private document contents to this repository.
 4. Every content change to either HTML page also updates that page's top-right `Updated YYYY-MM-DD`. Review the diff, stage only intended files, push to `main`, and check the GitHub Pages build and rendered page.
 
 This is a publication surface, not an issue tracker or the source of truth for project tasks.

@@ -220,9 +220,9 @@ const PROJECTS = {
   thloan: {
     title:"TH Loan Purpose — Nano 用途验证", stage:"s4", market:"TH（Nano Finance / BCL）",
     bg:"为泰国 Nano 贷款核验职业用途：在用户声明之外，结合申请材料建立可复核的审核依据，支持合规放贷。",
+    prd:{summary:"二期需求初稿拟对贷款用途、经营计划及证明材料作申请级 AI 辅助判断；不可判或处理失败时交由人工审核。审核规则、输入输出和接入方式仍待确认。", url:"https://confluence.shopee.io/x/Gz3axQ", label:"Model PRD（初稿）"},
     facts:[
       ["进展","9 月 14 日一期上线，采用前置分流与人工审核；Ops 打标已完成。阶段 4 是项目池标记，模型训练、评测和二期上线尚未完成。"],
-      ["PRD 摘要","二期需求初稿拟对贷款用途、经营计划及证明材料作申请级 AI 辅助判断；不可判或处理失败时交由人工审核。审核规则、输入输出和接入方式仍待确认。"],
       ["PIC","模型：Cedric Chen；UC、Risk、Ops 与合规团队分别负责材料采集、审核路由、人工复核及口径确认。"],
       ["下一步","对齐审核边界和模型需求，准备独立复核样本及评测标准；联调与上线时间待确认。"]
     ]
@@ -264,6 +264,7 @@ document.querySelectorAll(".g-row").forEach(row => {
     body.innerHTML =
       `<h3>市场 / 业务线</h3><p>${p.market}</p>` +
       `<h3>背景说明</h3><p>${p.bg}</p>` +
+      (p.prd ? `<h3>PRD 摘要</h3><p>${p.prd.summary}</p><p><a href="${p.prd.url}" target="_blank" rel="noopener noreferrer">${p.prd.label}</a></p>` : "") +
       `<h3>要点</h3><ul>${p.facts.map(f=>`<li><b>${f[0]}：</b>${f[1]}</li>`).join("")}</ul>`;
     document.getElementById("drawer").classList.add("open");
     document.getElementById("scrim").classList.add("open");
