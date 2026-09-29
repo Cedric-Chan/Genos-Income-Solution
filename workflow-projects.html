@@ -97,7 +97,7 @@ a.back{font-size:.72em;font-weight:700}
 
 <header>
   <h1>AI Workflow Projects</h1>
-  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-28</div>
+  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-29</div>
 </header>
 
 <a class="back" href="index.html">← Genos Capability Matrix</a>
@@ -126,13 +126,13 @@ a.back{font-size:.72em;font-weight:700}
       <div class="name"><span class="t">MY SSM Extraction</span><span class="m">MY · 企业注册证明解析</span></div>
       <div style="grid-column:2/5"></div>
       <div style="grid-column:5/6"><div class="bar s2">链路 · Batch 就绪</div></div>
-      <div style="grid-column:6/9"><div class="bar ghost">FRF → 打标 → 训练 → 联调（待排期）</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">Ops 打标 → Algo 评审 → 训练 → 联调（ETA 待确认）</div></div>
     </div>
     <div class="g-row" data-p="eslip">
       <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
       <div style="grid-column:2/5"></div>
       <div style="grid-column:5/6"><div class="bar s5">离线批量解析已跑通</div></div>
-      <div style="grid-column:6/9"><div class="bar ghost">Parquet 合并导出链路待确定 · 训练待启动</div></div>
+      <div style="grid-column:6/9"><div class="bar ghost">数据链路调整优化 · 历史数据回溯进行中</div></div>
     </div>
     <div class="g-row" data-p="phspc">
       <div class="name"><span class="t">PH Same Person Check</span><span class="m">PH · 用户关联同人核验</span></div>
@@ -163,8 +163,8 @@ a.back{font-size:.72em;font-weight:700}
       <div class="name"><span class="t">TH Loan Purpose</span><span class="m">TH · Nano 用途验证</span></div>
       <div style="grid-column:2/5"></div>
       <div style="grid-column:5/6"><div class="bar s3">一期上线 · 打标完成</div></div>
-      <div style="grid-column:6/7"><div class="bar ghost">模型训练待评审</div></div>
-      <div style="grid-column:7/9"><div class="bar ghost">Extend Service 联调 · 排期待确认</div></div>
+      <div style="grid-column:6/7"><div class="bar s4">训练中 · 目标 10-20 完成</div></div>
+      <div style="grid-column:7/9"><div class="bar ghost">联调（10 月底计划）· 待 Risk BE PIC / 传参细节</div></div>
     </div>
     <div class="g-row" data-p="aml">
       <div class="name"><span class="t">AML Maker Review</span><span class="m">PH · SPP 反洗钱人审自动化</span></div>
@@ -182,7 +182,7 @@ a.back{font-size:.72em;font-weight:700}
   <div id="todayLine"></div>
 </div>
 
-<div class="note">公开摘要 · 截至 2026-09-28 · 内部项目 Markdown 记录为准，计划节点不代表已承诺排期 · 点击项目查看概况</div>
+<div class="note">公开摘要 · 截至 2026-09-29 · 内部项目 Markdown 记录为准，计划节点不代表已承诺排期 · 点击项目查看概况</div>
 
 </div>
 
@@ -213,7 +213,7 @@ const PROJECTS = {
     title:"MY SSM Extraction — 企业注册证明解析", stage:"s2", market:"MY（Seller）",
     bg:"面向企业注册证明的结构化解析需求，服务 Seller 授信材料核验。",
     prd:{summary:"先完成文件数据准备与标注，再推进模型开发和服务接入；业务规则、验收及排期需与需求方和 Risk 确认。", url:"https://confluence.shopee.io/x/IUzaxQ", label:"Model PRD"},
-    facts:[["进展","数据链路已完成，Copilot Batch 已创建；模型训练与上线未完成。"],["下一步","Policy 提 FRF，Ops 打标，Algo 提模型需求，并与 Risk PM 确认联调上线日期。"]]
+    facts:[["进展","数据链路已完成，Copilot Batch 已创建；当前待 Ops 打标、待 Algo 评审，ETA 待确认。模型训练与上线未完成。"],["下一步","Ops 打标与 Algo 评审排期，并与 Risk PM 确认 ETA 及联调上线日期。"]]
   },
   brtext: {
     title:"BR Text Features — 提额文本特征工程", stage:"s2", market:"BR（BCL）",
@@ -224,7 +224,7 @@ const PROJECTS = {
     title:"ID BPKB Carloan — 车辆证件辅助核验", stage:"s2", market:"ID（Jabodetabek 二轮车优先）",
     bg:"BPKB 与 STNK 车辆证件的辅助核验；车辆照片等业务核查由相应流程负责。",
     prd:{summary:"以车辆证件有效性、可读字段及异常为模型候选范围；标注和接口尚待评审，不替代人工与门户核查。", url:"https://confluence.shopee.io/pages/viewpage.action?pageId=3320423597", label:"Model PRD（初稿）"},
-    facts:[["进展","样本采集完成，BPKB/STNK 标注指南已整理。"],["下一步","安排 Ops 打标，随后开展模型训练调优；联调和上线日期待确认。"]]
+    facts:[["进展","样本采集完成，BPKB/STNK 标注指南已整理。"],["下一步","待 Ops 打标启动，随后开展模型训练调优；训练与联调 ETA 待确认。"]]
   },
   my2w: {
     title:"MY 2W Deepfake — VOC 鉴别与交付照片", stage:"s2", market:"MY（2W Motorcycle Loan）",
@@ -236,9 +236,9 @@ const PROJECTS = {
     bg:"为泰国 Nano 贷款核验职业用途：在用户声明之外，结合申请材料建立可复核的审核依据，支持合规放贷。",
     prd:{summary:"二期拟对贷款用途和材料作申请级辅助判断，不可判时交人工；评测查询逻辑已附 PRD，接口和排期仍待评审。", url:"https://confluence.shopee.io/x/Gz3axQ", label:"Model PRD（初稿）"},
     facts:[
-      ["进展","9 月 14 日一期上线，Ops 打标已完成；预计 9 月 29 日 PRD review 后启动训练。阶段 4 是项目池标记，不表示模型训练已完成。"],
+      ["进展","9 月 14 日一期上线，Ops 打标已完成；PRD review 已完成（9 月 29 日），模型训练已启动，目标 10 月 20 日完成训练。"],
       ["PIC","模型：Cedric Chen；UC、Risk、Ops 与合规团队分别负责材料采集、审核路由、人工复核及口径确认。"],
-      ["下一步","与 Holmes 对齐 Extend Service 传参和整体 timeline；联调与上线时间待确认。"]
+      ["下一步","假期后确定 Risk BE PIC 与 pending 幂等传参细节；目标 10 月底联调；线上 GPU 资源协调由 PM + Algo 跟进。"]
     ]
   },
   phspc: {
@@ -261,9 +261,9 @@ const PROJECTS = {
     bg:"对已授权采集的 eSlip 交易截图进行离线批量解析，为用户线下交易行为时序模型提供数据。",
     prd:{summary:"离线批量解析已写入 S3 Parquet；下一步合并导出为下游方便消费的形态，具体链路由 DE 与 Model PIC 确定。", url:"https://confluence.shopee.io/x/ME7axQ", label:"Model PRD"},
     facts:[
-      ["进展","原始文件下载与批量解析已跑通；下游交付和模型训练尚未完成。"],
+      ["进展","原始文件下载与批量解析已跑通；数据链路调整优化与历史数据回溯进行中。"],
       ["PIC","模型解析：Yong Keat；数据协作：Huang Wei；历史图片补跑准备：Zezhi；业务：Yang Lei。"],
-      ["下一步","DE 与 Model PIC 讨论 Parquet 合并导出链路和交付格式；历史图片补跑继续推进，之后开展模型训练。"]
+      ["下一步","确定合并导出链路与下游消费格式；历史图片补跑推进，完成后开展模型训练。"]
     ]
   }
 };
