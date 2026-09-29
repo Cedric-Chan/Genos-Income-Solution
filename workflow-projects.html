@@ -122,12 +122,6 @@ a.back{font-size:.72em;font-weight:700}
       <div class="name"><span class="t">Genos Income Project</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span></div>
       <div style="grid-column:2/9"><div class="bar s6">线上服务 · 5 市场 Live（since 2025）</div></div>
     </div>
-    <div class="g-row" data-p="myssm">
-      <div class="name"><span class="t">MY SSM Extraction</span><span class="m">MY · 企业注册证明解析</span></div>
-      <div style="grid-column:2/5"></div>
-      <div style="grid-column:5/6"><div class="bar s2">链路 · Batch 就绪</div></div>
-      <div style="grid-column:6/9"><div class="bar ghost">Ops 打标 → Algo 评审 → 训练 → 联调（ETA 待确认）</div></div>
-    </div>
     <div class="g-row" data-p="eslip">
       <div class="name"><span class="t">Eslip Txn Behavior</span><span class="m">TH · 交易行为模型</span></div>
       <div style="grid-column:2/5"></div>
@@ -206,14 +200,8 @@ const PROJECTS = {
   genos: {
     title:"Genos Income Project — 收入文件解析", stage:"s6", market:"ID / MY / PH / TH / VN",
     bg:"收入文件质量校验与结构化解析服务，供后续风控审核使用。",
-    prd:{summary:"按地区对收入材料做文件质检、结构化抽取，并将结果提供给风控流程；MY SSM 是仍在推进的新增文件类型。", url:"https://confluence.shopee.io/x/IUzaxQ", label:"MY SSM Model PRD"},
-    facts:[["当前","五市场提供既有文件类型的线上服务"],["下一步","按地区核实质量与自动筛查进展；MY SSM 单独推进"]]
-  },
-  myssm: {
-    title:"MY SSM Extraction — 企业注册证明解析", stage:"s2", market:"MY（Seller）",
-    bg:"面向企业注册证明的结构化解析需求，服务 Seller 授信材料核验。",
-    prd:{summary:"先完成文件数据准备与标注，再推进模型开发和服务接入；业务规则、验收及排期需与需求方和 Risk 确认。", url:"https://confluence.shopee.io/x/IUzaxQ", label:"Model PRD"},
-    facts:[["进展","数据链路已完成，Copilot Batch 已创建；当前待 Ops 打标、待 Algo 评审，ETA 待确认。模型训练与上线未完成。"],["下一步","Ops 打标与 Algo 评审排期，并与 Risk PM 确认 ETA 及联调上线日期。"]]
+    prd:{summary:"按地区对收入材料做文件质检、结构化抽取，并将结果提供给风控流程；MY SSM（企业注册证明解析）是新增文件类型。", url:"https://confluence.shopee.io/x/IUzaxQ", label:"MY SSM Model PRD"},
+    facts:[["当前","五市场提供既有文件类型的线上服务"],["下一步","按地区核实质量与自动筛查进展；MY SSM 已进入标注（Labelling）阶段，训练与上线待排期"]]
   },
   brtext: {
     title:"BR Text Features — 提额文本特征工程", stage:"s2", market:"BR（BCL）",
