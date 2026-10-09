@@ -97,7 +97,7 @@ a.back{font-size:.72em;font-weight:700}
 
 <header>
   <h1>AI Workflow Projects</h1>
-  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-09-30</div>
+  <div class="sub" style="align-self:flex-end;margin:0">Gantt Overview · Updated 2026-10-09</div>
 </header>
 
 <a class="back" href="index.html">← Genos Capability Matrix</a>
@@ -119,7 +119,7 @@ a.back{font-size:.72em;font-weight:700}
   </div>
   <div class="g-body" id="gbody">
     <div class="g-row" data-p="genos">
-      <div class="name"><span class="t">Genos Income Project</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span></div>
+      <div class="name"><span class="t">Genos Income Project</span><span class="m">ID/MY/PH/TH/VN · 收入文件解析</span><span class="m">MY SSM 已取消 · 不再后续跟进（10-09）</span></div>
       <div style="grid-column:2/11"><div class="bar s6">线上服务 · 5 市场 Live（since 2025）</div></div>
     </div>
     <div class="g-row" data-p="eslip">
@@ -202,8 +202,8 @@ const PROJECTS = {
   genos: {
     title:"Genos Income Project — 收入文件解析", stage:"s6", market:"ID / MY / PH / TH / VN",
     bg:"收入文件质量校验与结构化解析服务，供后续风控审核使用。",
-    prd:{summary:"按地区对收入材料做文件质检、结构化抽取，并将结果提供给风控流程；MY SSM（企业注册证明解析）是新增文件类型。", url:"https://confluence.shopee.io/x/IUzaxQ", label:"MY SSM Model PRD"},
-    facts:[["当前","五市场提供既有文件类型的线上服务"],["下一步","按地区核实质量与自动筛查进展；MY SSM 已进入标注（Labelling）阶段，训练与上线待排期"]]
+    prd:{summary:"原 MY SSM PRD 描述企业注册证明解析，用于 Seller 激活与调额授信；此需求已于 2026-10-09 取消，PRD 保留供追溯。", url:"https://confluence.shopee.io/x/IUzaxQ", label:"MY SSM Model PRD（已取消）"},
+    facts:[["当前","五市场提供既有文件类型的线上服务"],["MY SSM 状态","已取消（2026-10-09）；不再后续跟进"],["取消原因","Experian integration 时间线已初步确定；需求方认为 MY SSM 已无必要，且所需投入较大"],["跟进安排","MY SSM 的打标、评审、模型开发、接入与联调上线跟进已关闭"],["其他工作","按地区核实既有服务质量与自动筛查进展"]]
   },
   brtext: {
     title:"BR Text Features — 提额文本特征工程", stage:"s2", market:"BR（BCL）",
